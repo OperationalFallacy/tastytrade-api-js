@@ -1,3 +1,4 @@
+import { OrderResponse, submitOrderResponse } from "../models/OrderInterfaces";
 import extractResponseData from "../utils/response-util";
 import TastytradeHttpClient from "./tastytrade-http-client";
 
@@ -24,7 +25,7 @@ export default class OrderService {
         return extractResponseData(order)
     }
 
-    async cancelOrder(accountNumber: string, orderId: number){
+    async cancelOrder(accountNumber: string, orderId: number):Promise<OrderResponse>{
         //Requests order cancellation
         const order = await this.httpClient.deleteData(`/accounts/${accountNumber}/orders/${orderId}`, {})
         return extractResponseData(order)
@@ -48,13 +49,13 @@ export default class OrderService {
         return extractResponseData(liveOrders)
     }
 
-    async getOrders(accountNumber: string, queryParams = {}){
+    async getOrders(accountNumber: string, queryParams = {}):Promise<OrderResponse[]>{
         //Returns a paginated list of the customer's orders (as identified by the provided authentication token) based on sort param. If no sort is passed in, it defaults to descending order.
         const orders = await this.httpClient.getData(`/accounts/${accountNumber}/orders`, {}, queryParams)
         return extractResponseData(orders)
     }
 
-    async createOrder(accountNumber: string, order: object){
+    async createOrder(accountNumber: string, order: object): Promise<submitOrderResponse> {
         //Accepts a json document containing parameters to create an order for the client.
         const orderResponse = await this.httpClient.postData(`/accounts/${accountNumber}/orders`, order , {})
         return extractResponseData(orderResponse)

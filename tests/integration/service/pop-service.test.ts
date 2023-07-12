@@ -4,39 +4,41 @@ import SessionService from "../../../lib/services/session-service";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-const client = new TastytradeHttpClient(process.env.BASE_URL!)
+const client = new TastytradeHttpClient(process.env.BASE_URL_PROD!)
 const popService = new PopService(client)
 
-beforeAll(async () => {
-  const sessionService = new SessionService(client)
-  await sessionService.login(process.env.API_USERNAME!, process.env.API_PASSWORD!)
-});
-
 const req: Pop50Request = {
-  "current-stock-price": 8.67,
+  "current-stock-price": 32.9778,
   "current-time-at": new Date(),
   "histogram-ideal-range-count": 60,
-  "initial-cost": 43,
+  "initial-cost": 62,
   "initial-cost-effect": "Credit",
   "interest-rate": 0.05,
   "target-fraction-of-cost": 0.5,
-  "volatility": 0.575123919,
+  "volatility": 0.46049999999999996,
   "legs": [
-      {
-          "action": "sell_to_open",
-          "asset-type": "Equity Option",
-          "call-or-put": "P",
-          "days-to-expiration": 54,
-          "quantity": 1,
-          "strike-price": 8,
-          "contract-implied-volatility": 0.558392479513946,
-          "expiration-implied-volatility": 0.635073669
-      }
+    {
+      "action": "sell_to_open",
+      "asset-type": "Equity Option",
+      "call-or-put": "P",
+      "days-to-expiration": 38,
+      "quantity": 1,
+      "strike-price": 31,
+      "contract-implied-volatility": 0.40590000000000004,
+      "expiration-implied-volatility": 0.44049999999999995
+    }
   ],
-  "source": "api-tests"
+  "source": "WB2;0.22.0"
 }
 
+beforeAll(async () => {
+  const sessionService = new SessionService(client)
+  await sessionService.login(process.env.API_USERNAME!, process.env.API_PASSWORD_PROD!)
+});
+
+
 describe('get50Pop', () => {
+
   it('response has expected property with a known value', async function() {
     const response = await popService.get50Pop(req)
     expect(response["num-of-paths"]).toEqual(1000)

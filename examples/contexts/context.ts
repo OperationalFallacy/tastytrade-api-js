@@ -5,7 +5,8 @@ import { makeAutoObservable } from 'mobx';
 import _ from 'lodash'
 
 class TastytradeContext {
-    static Instance = new TastytradeContext('https://api.tastyworks.com', 'wss://streamer.tastyworks.com');
+    // TODO make configurable
+    static Instance = new TastytradeContext('https://api.cert.tastyworks.com', 'wss://streamer.cert.tastyworks.com');
     public tastytradeApi: TastytradeClient
     public accountNumbers: string[] = []
     public quoteStreamer: QuoteStreamer | null = null
