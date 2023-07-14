@@ -1,3 +1,4 @@
+import { accountStatusResponse } from "../models/AccountStatusInterfaces";
 import extractResponseData from "../utils/response-util";
 import TastytradeHttpClient from "./tastytrade-http-client";
 
@@ -7,9 +8,9 @@ export default class AccountStatusService {
     }
 
     //Trading Status: Allows an API client to request information about the basic trade status of an account. This includes information about the strategies an account can trade. 
-    async getAccountStatus(accountNumber: string){
+    async getAccountStatus(accountNumber: string):Promise<accountStatusResponse>{
         //Returns current trading status for an account.
-        const accountStatus =  (await this.httpClient.getData(`/accounts/${accountNumber}/trading-status`, {}, {}))
+        const accountStatus: accountStatusResponse =  (await this.httpClient.getData(`/accounts/${accountNumber}/trading-status`, {}, {}))
         return extractResponseData(accountStatus)
     }
 }
