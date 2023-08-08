@@ -10,7 +10,7 @@ interface watchListEntries {
   "order-index": number;
 }
 
-type Instrument = 'Future' | 'Equity'
+export type Instrument = 'Future' | 'Equity' | 'EquityOption'
 
 interface watchListEntry {
   symbol: string;

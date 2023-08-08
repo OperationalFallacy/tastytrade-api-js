@@ -1,15 +1,29 @@
-type PRICE_EFFECTS = "Debit" | "Credit";
-type ORDER_TYPE = "Limit"; // possibly | "Market";
-type ORDER_ACTIONS =
+export type PRICE_EFFECTS = "Debit" | "Credit";
+export type ORDER_TYPE = "Limit"; // possibly | "Market";
+export type ORDER_ACTIONS =
   | "Sell to Open"
   | "Sell to Close"
   | "Buy to Open"
   | "Buy to Close";
-type FEES_EFFECT = "Debit";
-type TIME_IN_FORCE = "Day" | "GTC";
+export type FEES_EFFECT = "Debit" | 'Credit';
+export type TIME_IN_FORCE = "Day" | "GTC";
 
 // https://developer.tastytrade.com/order-flow/#submission-phase
-declare type ORDER_STATUS = "Live" | "Received" | "Cancelled" | "Routed" | "In Flight" | "Live Order" | "Cancel Requested" | "Contingent" | "Filled" | "Expired" | "Rejected" | "Removed" | "Partially Removed" | "Removed";
+declare type ORDER_STATUS =
+  | "Live"
+  | "Received"
+  | "Cancelled"
+  | "Routed"
+  | "In Flight"
+  | "Live Order"
+  | "Cancel Requested"
+  | "Contingent"
+  | "Filled"
+  | "Expired"
+  | "Rejected"
+  | "Removed"
+  | "Partially Removed"
+  | "Removed";
 
 //Base
 interface orderResponseBase {
@@ -17,7 +31,7 @@ interface orderResponseBase {
   context: string;
 }
 
-interface OrderLeg {
+export interface OrderLeg {
   "instrument-type": string;
   symbol: string;
   quantity: number;
@@ -27,6 +41,7 @@ interface OrderLeg {
 
 // submitOrderRequest
 export interface submitOrderRequest {
+  source?: string;
   "time-in-force": TIME_IN_FORCE;
   "order-type": ORDER_TYPE;
   price: number;
@@ -45,12 +60,12 @@ interface submitOrderResponseLeg extends OrderLeg {
 export interface submitOrderResponseErrorBase {
   code: string;
   message: string;
-  errors: submitOrderResponseError[]
+  errors: submitOrderResponseError[];
 }
 
 export interface submitOrderResponseError {
-  code: string
-  message: string
+  code: string;
+  message: string;
 }
 
 export interface submitOrderResponse extends orderResponseBase {
@@ -58,9 +73,14 @@ export interface submitOrderResponse extends orderResponseBase {
   error?: submitOrderResponseErrorBase;
 }
 
-interface submitOrderResponseData {
+interface submitOrderResponseWarning {
+  code: string;
+  message: string;
+}
+
+export interface submitOrderResponseData {
   order: OrderResponse;
-  warnings: any[];
+  warnings: submitOrderResponseWarning[];
   "buying-power-effect": submitOrderResponseBuyingPowerEffect;
   "fee-calculation": submitOrderResponseFeeCalculation;
 }
@@ -115,7 +135,7 @@ interface submitOrderResponseFeeCalculation {
 
 // Live order response
 export interface liveOrderResponse extends orderResponseBase {
-   data: liveOrderResponseData;
+  data: liveOrderResponseData;
 }
 
 interface liveOrderResponseData {

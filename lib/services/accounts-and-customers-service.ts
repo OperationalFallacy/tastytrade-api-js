@@ -1,3 +1,4 @@
+import { quoteStreamerTokenResponse } from "../models/QuoteStreamer";
 import extractResponseData from "../utils/response-util";
 import TastytradeHttpClient from "./tastytrade-http-client";
 
@@ -27,9 +28,9 @@ export default class AccountsAndCustomersService {
     }
 
     //Quote-streamer-tokens: Operations about quote-streamer-tokens
-    async getQuoteStreamerTokens(){
+    async getQuoteStreamerTokens():Promise<quoteStreamerTokenResponse>{
         //Returns the appropriate quote streamer endpoint, level and identification token for the current customer to receive market data.
         const quoteStreamerTokens = (await this.httpClient.getData('/quote-streamer-tokens', {}, {}))
-        return extractResponseData(quoteStreamerTokens)
+        return extractResponseData(quoteStreamerTokens) as quoteStreamerTokenResponse;
     }
 }

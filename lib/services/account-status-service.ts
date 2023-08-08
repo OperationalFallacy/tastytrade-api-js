@@ -1,4 +1,4 @@
-import { accountStatusResponse } from "../models/AccountStatusInterfaces";
+import { accountStatusResponse } from "../models/AccountStatus";
 import extractResponseData from "../utils/response-util";
 import TastytradeHttpClient from "./tastytrade-http-client";
 

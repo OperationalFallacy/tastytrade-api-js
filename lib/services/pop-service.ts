@@ -1,9 +1,9 @@
 import extractResponseData from "../utils/response-util";
 import TastytradeHttpClient from "./tastytrade-http-client";
+const fs = require('fs');
 
 export interface Pop50Request {
   "current-stock-price": number;
-  "current-time-at": Date;
   "histogram-ideal-range-count": number;
   "initial-cost": number;
   "initial-cost-effect": string;
@@ -11,11 +11,10 @@ export interface Pop50Request {
   "target-fraction-of-cost": number;
   volatility: number;
   legs: PopRequestLeg[];
-  source: string;
 }
 
 export interface PopRequestLeg {
-  action: "sell_to_open" | "buy_to_open";
+  action: "sell_to_open" | "buy_to_open" | "selltoopen" | "buytoopen";
   "asset-type": "Equity Option";
   "call-or-put": "P" | "C";
   "days-to-expiration": number;
@@ -24,7 +23,7 @@ export interface PopRequestLeg {
   "contract-implied-volatility": number;
   "expiration-implied-volatility": number;
 }
-export interface Pop50Response {
+export interface Pop50ResponseData {
   "num-of-paths": number;
   "steps-per-day": number;
   "winner-count": number;
@@ -46,6 +45,15 @@ export interface Pop50Response {
   "winning-steps-histogram": PopWinningStepsHistogram[];
 }
 
+export interface Pop50Response {
+  data: Pop50ResponseData;
+  error?: Pop50ResponseError;
+}
+export interface Pop50ResponseError {
+  message: string;
+  errors: any[]; // You may want to define a more specific interface for these errors
+}
+ 
 export interface PathResult {
   cost: string;
   "cost-effect": "Debit" | "Credit";
@@ -76,11 +84,22 @@ export default class PopService {
    * @returns {Pop50Response}
    */
   async get50Pop(requestData: Pop50Request): Promise<Pop50Response> {
-    const popResponse = await this.httpClient.postData(
-      "/fifty-percent-pop",
-      requestData,
-      {}
-    );
-    return extractResponseData(popResponse) as Pop50Response;
+    try {
+      const popResponse = await this.httpClient.postData(
+        "/fifty-percent-pop",
+        requestData,
+        {}
+      );
+      if(popResponse.data.error) {
+        console.error("Error occurred during get50Pop");
+        throw popResponse.data.error;
+      }
+      const s: Pop50ResponseData = extractResponseData(popResponse)
+
+      return { data: s, error: popResponse.error } as Pop50Response;
+    } catch (error:any) {
+      console.error("Error occurred during get50Pop:", error.message);
+      throw error;
+    }
   }
 }
