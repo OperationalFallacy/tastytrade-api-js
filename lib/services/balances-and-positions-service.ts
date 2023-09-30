@@ -7,7 +7,7 @@ export default class BalancesAndPositionsService {
     }
 
     //Positions: Operations about positions
-    async getPositionsList(accountNumber: string, queryParams = {}):Promise<getPositionsListResponse[]>{
+    async getPositionsList(accountNumber: string, queryParams = {}):Promise<getPositionsListResponse>{
         //Returns a list of the account's positions.
         //Can be filtered by symbol, underlying_symbol
         const positionsList = (await this.httpClient.getData(`/accounts/${accountNumber}/positions`, {}, queryParams))
