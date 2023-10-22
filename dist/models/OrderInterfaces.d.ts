@@ -1,8 +1,8 @@
-export type PRICE_EFFECTS = "Debit" | "Credit";
-export type ORDER_TYPE = "Limit";
-export type ORDER_ACTIONS = "Sell to Open" | "Sell to Close" | "Buy to Open" | "Buy to Close";
-export type FEES_EFFECT = "Debit" | 'Credit';
-export type TIME_IN_FORCE = "Day" | "GTC";
+export declare type PRICE_EFFECTS = "Debit" | "Credit";
+export declare type ORDER_TYPE = "Limit";
+export declare type ORDER_ACTIONS = "Sell to Open" | "Sell to Close" | "Buy to Open" | "Buy to Close";
+export declare type FEES_EFFECT = "Debit" | 'Credit';
+export declare type TIME_IN_FORCE = "Day" | "GTC";
 declare type ORDER_STATUS = "Live" | "Received" | "Cancelled" | "Routed" | "In Flight" | "Live Order" | "Cancel Requested" | "Contingent" | "Filled" | "Expired" | "Rejected" | "Removed" | "Partially Removed" | "Removed";
 interface orderResponseBase {
     "api-version": string;

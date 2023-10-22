@@ -8,4 +8,5 @@ export default class AccountsAndCustomersService {
     getCustomerAccountResources(): Promise<any>;
     getFullCustomerAccountResource(accountNumber: string): Promise<any>;
     getQuoteStreamerTokens(): Promise<quoteStreamerTokenResponse>;
+    getApiQuoteToken(): Promise<quoteStreamerTokenResponse>;
 }

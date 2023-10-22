@@ -33,4 +33,10 @@ export default class AccountsAndCustomersService {
         const quoteStreamerTokens = (await this.httpClient.getData('/quote-streamer-tokens', {}, {}))
         return extractResponseData(quoteStreamerTokens) as quoteStreamerTokenResponse;
     }
+
+    //Returns the appropriate quote streamer endpoint, level and identification token for the current customer to receive market data.
+    async getApiQuoteToken():Promise<quoteStreamerTokenResponse> {
+        const apiQuoteToken = (await this.httpClient.getData('/api-quote-tokens', {}, {}))
+        return extractResponseData(apiQuoteToken)
+    }
 }

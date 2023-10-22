@@ -6,9 +6,9 @@ export declare enum STREAMER_STATE {
     Closed = 1,
     Error = 2
 }
-export type Disposer = () => void;
-export type StreamerStateObserver = (streamerState: STREAMER_STATE) => void;
-export type StreamerMessageObserver = (json: object) => void;
+export declare type Disposer = () => void;
+export declare type StreamerStateObserver = (streamerState: STREAMER_STATE) => void;
+export declare type StreamerMessageObserver = (json: object) => void;
 export declare class AccountStreamer {
     private readonly url;
     private readonly session;

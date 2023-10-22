@@ -20,15 +20,15 @@ export declare enum CandleType {
     Volume = "v",
     Price = "p"
 }
-export type MarketDataListener = (data: any) => void;
-export type ErrorListener = (error: any) => void;
-export type AuthStateListener = (isAuthorized: boolean) => void;
-export type CandleSubscriptionOptions = {
+export declare type MarketDataListener = (data: any) => void;
+export declare type ErrorListener = (error: any) => void;
+export declare type AuthStateListener = (isAuthorized: boolean) => void;
+export declare type CandleSubscriptionOptions = {
     period: number;
     type: CandleType;
     channelId: number;
 };
-type Remover = () => void;
+declare type Remover = () => void;
 export default class MarketDataStreamer {
     private webSocket;
     private token;

@@ -16,7 +16,7 @@ var MarketDataSubscriptionType;
     MarketDataSubscriptionType["Profile"] = "Profile";
     MarketDataSubscriptionType["Greeks"] = "Greeks";
     MarketDataSubscriptionType["Underlying"] = "Underlying";
-})(MarketDataSubscriptionType || (exports.MarketDataSubscriptionType = MarketDataSubscriptionType = {}));
+})(MarketDataSubscriptionType = exports.MarketDataSubscriptionType || (exports.MarketDataSubscriptionType = {}));
 var CandleType;
 (function (CandleType) {
     CandleType["Tick"] = "t";
@@ -30,7 +30,7 @@ var CandleType;
     CandleType["Year"] = "y";
     CandleType["Volume"] = "v";
     CandleType["Price"] = "p";
-})(CandleType || (exports.CandleType = CandleType = {}));
+})(CandleType = exports.CandleType || (exports.CandleType = {}));
 // List of all subscription types except for Candle
 var AllSubscriptionTypes = Object.values(MarketDataSubscriptionType);
 var KeepaliveInterval = 30000; // 30 seconds

@@ -1,5 +1,5 @@
 import { PRICE_EFFECTS } from "./OrderInterfaces";
-export type QUANTITY_DIRECTION = "Short" | "Long";
+export declare type QUANTITY_DIRECTION = "Short" | "Long";
 export interface Position {
     "account-number": string;
     symbol: string;
@@ -26,8 +26,8 @@ export interface Position {
     "created-at": Date;
     "updated-at": Date;
 }
-export type getPositionsListResponse = Position[];
-export type INSTRUMENT = "Bond" | "Cryptocurrency" | "Currency" | "Pair" | "Equity" | "Equity Offering" | "Equity Option" | "Future" | "Future Option" | "Index" | "Unknown" | "Warrant";
+export declare type getPositionsListResponse = Position[];
+export declare type INSTRUMENT = "Bond" | "Cryptocurrency" | "Currency" | "Pair" | "Equity" | "Equity Offering" | "Equity Option" | "Future" | "Future Option" | "Index" | "Unknown" | "Warrant";
 export interface getBalancesSnapshotResponse {
     "account-number": string;
     "cash-balance": number;
