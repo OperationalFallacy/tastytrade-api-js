@@ -28,7 +28,7 @@ export default class TastytradeHttpClient{
     private async executeRequest(method: string, url: string, data: object = {}, headers: object = {}, params: object = {}) {
       const dasherizedParams = recursiveDasherizeKeys(params)
       const dasherizedData = recursiveDasherizeKeys(data)
-      const mergedHeaders = { ...headers, ...this.getDefaultHeaders() }
+      const mergedHeaders = {...this.getDefaultHeaders(), ...headers }
 
       const config = _.omitBy({
         method,
