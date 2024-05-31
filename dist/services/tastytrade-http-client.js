@@ -77,12 +77,12 @@ var TastytradeHttpClient = /** @class */ (function () {
         }
         return headers;
     };
-    TastytradeHttpClient.prototype.executeRequest = function (method, url, data, headers, params) {
-        if (data === void 0) { data = {}; }
-        if (headers === void 0) { headers = {}; }
-        if (params === void 0) { params = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TastytradeHttpClient.prototype.executeRequest = function (method_1, url_1) {
+        return __awaiter(this, arguments, void 0, function (method, url, data, headers, params) {
             var dasherizedParams, dasherizedData, mergedHeaders, config;
+            if (data === void 0) { data = {}; }
+            if (headers === void 0) { headers = {}; }
+            if (params === void 0) { params = {}; }
             return __generator(this, function (_a) {
                 dasherizedParams = (0, json_util_js_1.recursiveDasherizeKeys)(params);
                 dasherizedData = (0, json_util_js_1.recursiveDasherizeKeys)(data);
@@ -100,10 +100,10 @@ var TastytradeHttpClient = /** @class */ (function () {
             });
         });
     };
-    TastytradeHttpClient.prototype.getData = function (url, headers, queryParams) {
-        if (headers === void 0) { headers = {}; }
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TastytradeHttpClient.prototype.getData = function (url_1) {
+        return __awaiter(this, arguments, void 0, function (url, headers, queryParams) {
+            if (headers === void 0) { headers = {}; }
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.executeRequest('get', url, {}, headers, queryParams)];
             });

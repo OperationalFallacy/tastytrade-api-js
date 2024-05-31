@@ -46,10 +46,10 @@ var InstrumentsService = /** @class */ (function () {
         this.httpClient = httpClient;
     }
     //Instruments: Allows an API client to fetch data about instruments.
-    InstrumentsService.prototype.getCryptocurrencies = function (symbols) {
-        if (symbols === void 0) { symbols = []; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getCryptocurrencies = function () {
+        return __awaiter(this, arguments, void 0, function (symbols) {
             var queryParams, cryptocurrencies;
+            if (symbols === void 0) { symbols = []; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -77,10 +77,10 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getActiveEquities = function (queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getActiveEquities = function () {
+        return __awaiter(this, arguments, void 0, function (queryParams) {
             var activeEquities;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities/active", {}, queryParams)];
@@ -91,10 +91,10 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getEquityDefinitions = function (queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getEquityDefinitions = function () {
+        return __awaiter(this, arguments, void 0, function (queryParams) {
             var equityDefinitions;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities", {}, queryParams)];
@@ -118,11 +118,11 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getEquityOptions = function (symbols, active, withExpired) {
-        if (active === void 0) { active = true; }
-        if (withExpired === void 0) { withExpired = false; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getEquityOptions = function (symbols_1) {
+        return __awaiter(this, arguments, void 0, function (symbols, active, withExpired) {
             var queryParams, equityOptions;
+            if (active === void 0) { active = true; }
+            if (withExpired === void 0) { withExpired = false; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -138,10 +138,10 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getSingleEquityOption = function (symbol, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getSingleEquityOption = function (symbol_1) {
+        return __awaiter(this, arguments, void 0, function (symbol, queryParams) {
             var singleOption;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equity-options/".concat(symbol), {}, queryParams)];
@@ -152,10 +152,10 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getFutures = function (queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getFutures = function () {
+        return __awaiter(this, arguments, void 0, function (queryParams) {
             var futures;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/futures", {}, queryParams)];
@@ -205,10 +205,10 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getFutureOptions = function (queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getFutureOptions = function () {
+        return __awaiter(this, arguments, void 0, function (queryParams) {
             var futureOptions;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-options", {}, queryParams)];
@@ -271,10 +271,10 @@ var InstrumentsService = /** @class */ (function () {
             });
         });
     };
-    InstrumentsService.prototype.getWarrants = function (queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    InstrumentsService.prototype.getWarrants = function () {
+        return __awaiter(this, arguments, void 0, function (queryParams) {
             var warrants;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/warrants", {}, queryParams)];

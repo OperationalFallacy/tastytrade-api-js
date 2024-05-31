@@ -72,10 +72,10 @@ var TransactionsService = /** @class */ (function () {
         });
     };
     //Transactions:  Operations about transactions
-    TransactionsService.prototype.getAccountTransactions = function (accountNumber, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    TransactionsService.prototype.getAccountTransactions = function (accountNumber_1) {
+        return __awaiter(this, arguments, void 0, function (accountNumber, queryParams) {
             var accountTransactions;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/transactions"), {}, queryParams)];

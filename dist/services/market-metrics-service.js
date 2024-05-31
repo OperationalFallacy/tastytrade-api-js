@@ -45,10 +45,10 @@ var MarketMetricsService = /** @class */ (function () {
         this.httpClient = httpClient;
     }
     //Default
-    MarketMetricsService.prototype.getMarketMetrics = function (queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    MarketMetricsService.prototype.getMarketMetrics = function () {
+        return __awaiter(this, arguments, void 0, function (queryParams) {
             var marketMetrics;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData('/market-metrics', {}, queryParams)];
@@ -72,10 +72,10 @@ var MarketMetricsService = /** @class */ (function () {
             });
         });
     };
-    MarketMetricsService.prototype.getHistoricalEarningsData = function (symbol, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    MarketMetricsService.prototype.getHistoricalEarningsData = function (symbol_1) {
+        return __awaiter(this, arguments, void 0, function (symbol, queryParams) {
             var historicalEarningsData;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/market-metrics/historic-corporate-events/earnings-reports/".concat(symbol), {}, queryParams)];

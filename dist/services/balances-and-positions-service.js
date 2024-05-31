@@ -45,10 +45,10 @@ var BalancesAndPositionsService = /** @class */ (function () {
         this.httpClient = httpClient;
     }
     //Positions: Operations about positions
-    BalancesAndPositionsService.prototype.getPositionsList = function (accountNumber, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    BalancesAndPositionsService.prototype.getPositionsList = function (accountNumber_1) {
+        return __awaiter(this, arguments, void 0, function (accountNumber, queryParams) {
             var positionsList;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/positions"), {}, queryParams)];
@@ -74,10 +74,10 @@ var BalancesAndPositionsService = /** @class */ (function () {
         });
     };
     //Balance-snapshots Operations about balance-snapshots
-    BalancesAndPositionsService.prototype.getBalanceSnapshots = function (accountNumber, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    BalancesAndPositionsService.prototype.getBalanceSnapshots = function (accountNumber_1) {
+        return __awaiter(this, arguments, void 0, function (accountNumber, queryParams) {
             var balanceSnapshot;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/balance-snapshots"), {}, queryParams)];

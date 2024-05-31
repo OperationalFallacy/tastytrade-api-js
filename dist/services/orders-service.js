@@ -149,10 +149,10 @@ var OrderService = /** @class */ (function () {
             });
         });
     };
-    OrderService.prototype.getOrders = function (accountNumber, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    OrderService.prototype.getOrders = function (accountNumber_1) {
+        return __awaiter(this, arguments, void 0, function (accountNumber, queryParams) {
             var orders;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/orders"), {}, queryParams)];
@@ -215,10 +215,10 @@ var OrderService = /** @class */ (function () {
             });
         });
     };
-    OrderService.prototype.getCustomerOrders = function (customerId, queryParams) {
-        if (queryParams === void 0) { queryParams = {}; }
-        return __awaiter(this, void 0, void 0, function () {
+    OrderService.prototype.getCustomerOrders = function (customerId_1) {
+        return __awaiter(this, arguments, void 0, function (customerId, queryParams) {
             var customerOrders;
+            if (queryParams === void 0) { queryParams = {}; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/customers/".concat(customerId, "/orders"), {}, queryParams)];

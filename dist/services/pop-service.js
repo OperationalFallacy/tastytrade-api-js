@@ -40,7 +40,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var response_util_1 = __importDefault(require("../utils/response-util"));
-var fs = require('fs');
 var PopService = /** @class */ (function () {
     function PopService(httpClient) {
         this.httpClient = httpClient;

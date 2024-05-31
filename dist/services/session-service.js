@@ -45,10 +45,10 @@ var SessionService = /** @class */ (function () {
         this.httpClient = httpClient;
     }
     // Sessions: Allows an API client to interact with their session, or create a new one.
-    SessionService.prototype.login = function (usernameOrEmail, password, rememberMe) {
-        if (rememberMe === void 0) { rememberMe = false; }
-        return __awaiter(this, void 0, void 0, function () {
+    SessionService.prototype.login = function (usernameOrEmail_1, password_1) {
+        return __awaiter(this, arguments, void 0, function (usernameOrEmail, password, rememberMe) {
             var params, sessionResponse, sessionData;
+            if (rememberMe === void 0) { rememberMe = false; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -63,10 +63,10 @@ var SessionService = /** @class */ (function () {
             });
         });
     };
-    SessionService.prototype.loginWithRememberToken = function (usernameOrEmail, rememberToken, rememberMe) {
-        if (rememberMe === void 0) { rememberMe = false; }
-        return __awaiter(this, void 0, void 0, function () {
+    SessionService.prototype.loginWithRememberToken = function (usernameOrEmail_1, rememberToken_1) {
+        return __awaiter(this, arguments, void 0, function (usernameOrEmail, rememberToken, rememberMe) {
             var params, sessionData, _a;
+            if (rememberMe === void 0) { rememberMe = false; }
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:

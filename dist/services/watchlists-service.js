@@ -72,10 +72,10 @@ var WatchlistsService = /** @class */ (function () {
         });
     };
     //Public Watchlists: Allows an API client to fetch tastyworks watchlists.
-    WatchlistsService.prototype.getPublicWatchlists = function (countsOnly) {
-        if (countsOnly === void 0) { countsOnly = false; }
-        return __awaiter(this, void 0, void 0, function () {
+    WatchlistsService.prototype.getPublicWatchlists = function () {
+        return __awaiter(this, arguments, void 0, function (countsOnly) {
             var publicWatchlists;
+            if (countsOnly === void 0) { countsOnly = false; }
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/public-watchlists", {}, { 'counts-only': countsOnly })];

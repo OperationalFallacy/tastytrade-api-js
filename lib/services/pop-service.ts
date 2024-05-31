@@ -1,6 +1,5 @@
 import extractResponseData from "../utils/response-util";
 import TastytradeHttpClient from "./tastytrade-http-client";
-const fs = require('fs');
 
 export interface Pop50Request {
   "current-stock-price": number;
