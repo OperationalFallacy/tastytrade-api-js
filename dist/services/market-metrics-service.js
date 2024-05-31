@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_1 = __importDefault(require("../utils/response-util"));
+var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
 var MarketMetricsService = /** @class */ (function () {
     function MarketMetricsService(httpClient) {
         this.httpClient = httpClient;
@@ -54,7 +54,7 @@ var MarketMetricsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData('/market-metrics', {}, queryParams)];
                     case 1:
                         marketMetrics = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(marketMetrics)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(marketMetrics)];
                 }
             });
         });
@@ -67,7 +67,7 @@ var MarketMetricsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/market-metrics/historic-corporate-events/dividends/".concat(symbol), {}, {})];
                     case 1:
                         historicalDividendData = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(historicalDividendData)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(historicalDividendData)];
                 }
             });
         });
@@ -81,7 +81,7 @@ var MarketMetricsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/market-metrics/historic-corporate-events/earnings-reports/".concat(symbol), {}, queryParams)];
                     case 1:
                         historicalEarningsData = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(historicalEarningsData)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(historicalEarningsData)];
                 }
             });
         });

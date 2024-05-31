@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_1 = __importDefault(require("../utils/response-util"));
+var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
 var OrderService = /** @class */ (function () {
     function OrderService(httpClient) {
         this.httpClient = httpClient;
@@ -53,7 +53,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.postData("/accounts/".concat(accountNumber, "/orders/").concat(orderId, "/reconfirm"), {}, {})];
                     case 1:
                         reconfirmOrder = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(reconfirmOrder)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(reconfirmOrder)];
                 }
             });
         });
@@ -66,7 +66,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.postData("/accounts/".concat(accountNumber, "/orders/").concat(orderId, "/dry-run"), replacementOrder, {})];
                     case 1:
                         replacementOrderDryRun = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(replacementOrderDryRun)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(replacementOrderDryRun)];
                 }
             });
         });
@@ -79,7 +79,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/orders/").concat(orderId), {}, {})];
                     case 1:
                         order = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(order)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(order)];
                 }
             });
         });
@@ -92,7 +92,20 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.deleteData("/accounts/".concat(accountNumber, "/orders/").concat(orderId), {})];
                     case 1:
                         order = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(order)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(order)];
+                }
+            });
+        });
+    };
+    OrderService.prototype.cancelComplexOrder = function (accountNumber, orderId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var order;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.httpClient.deleteData("/accounts/".concat(accountNumber, "/complex-orders/").concat(orderId), {})];
+                    case 1:
+                        order = _a.sent();
+                        return [2 /*return*/, (0, response_util_js_1.default)(order)];
                 }
             });
         });
@@ -105,7 +118,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.putData("/accounts/".concat(accountNumber, "/orders/").concat(orderId), replacementOrder, {})];
                     case 1:
                         order = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(order)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(order)];
                 }
             });
         });
@@ -118,7 +131,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.patchData("/accounts/".concat(accountNumber, "/orders/").concat(orderId), order, {})];
                     case 1:
                         orderResponse = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(orderResponse)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(orderResponse)];
                 }
             });
         });
@@ -131,7 +144,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/orders/live"), {}, {})];
                     case 1:
                         liveOrders = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(liveOrders)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(liveOrders)];
                 }
             });
         });
@@ -145,7 +158,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/accounts/".concat(accountNumber, "/orders"), {}, queryParams)];
                     case 1:
                         orders = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(orders)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(orders)];
                 }
             });
         });
@@ -158,7 +171,20 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.postData("/accounts/".concat(accountNumber, "/orders"), order, {})];
                     case 1:
                         orderResponse = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(orderResponse)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(orderResponse)];
+                }
+            });
+        });
+    };
+    OrderService.prototype.createComplexOrder = function (accountNumber, order) {
+        return __awaiter(this, void 0, void 0, function () {
+            var orderResponse;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.httpClient.postData("/accounts/".concat(accountNumber, "/complex-orders"), order, {})];
+                    case 1:
+                        orderResponse = _a.sent();
+                        return [2 /*return*/, (0, response_util_js_1.default)(orderResponse)];
                 }
             });
         });
@@ -171,7 +197,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.postData("/accounts/".concat(accountNumber, "/orders/dry-run"), order, {})];
                     case 1:
                         orderDryRun = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)({ data: orderDryRun, errors: {} })];
+                        return [2 /*return*/, (0, response_util_js_1.default)(orderDryRun)];
                 }
             });
         });
@@ -184,7 +210,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/customers/".concat(customerId, "/orders/live"), {}, {})];
                     case 1:
                         liveOrders = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(liveOrders)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(liveOrders)];
                 }
             });
         });
@@ -198,7 +224,7 @@ var OrderService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/customers/".concat(customerId, "/orders"), {}, queryParams)];
                     case 1:
                         customerOrders = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(customerOrders)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(customerOrders)];
                 }
             });
         });

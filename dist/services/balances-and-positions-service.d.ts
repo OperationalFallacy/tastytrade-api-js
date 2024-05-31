@@ -1,5 +1,5 @@
-import { getBalancesSnapshotResponse, getPositionsListResponse } from "../models";
-import TastytradeHttpClient from "./tastytrade-http-client";
+import type { getBalancesSnapshotResponse, getPositionsListResponse } from "../models/BalancesAndPositions.js";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 export default class BalancesAndPositionsService {
     private httpClient;
     constructor(httpClient: TastytradeHttpClient);

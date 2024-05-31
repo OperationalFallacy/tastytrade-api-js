@@ -38,5 +38,5 @@ export default class TastytradeClient {
     constructor(baseUrl: string, accountStreamerUrl: string);
     get session(): TastytradeSession;
 }
-export { MarketDataStreamer, MarketDataSubscriptionType, MarketDataListener, CandleSubscriptionOptions, CandleType };
-export { AccountStreamer, STREAMER_STATE, Disposer, StreamerStateObserver };
+export { MarketDataStreamer, MarketDataSubscriptionType, type MarketDataListener, type CandleSubscriptionOptions, CandleType };
+export { AccountStreamer, STREAMER_STATE, type Disposer, type StreamerStateObserver };

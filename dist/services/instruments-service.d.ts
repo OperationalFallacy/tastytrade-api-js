@@ -1,4 +1,4 @@
-import TastytradeHttpClient from "./tastytrade-http-client";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 export default class InstrumentsService {
     private httpClient;
     constructor(httpClient: TastytradeHttpClient);

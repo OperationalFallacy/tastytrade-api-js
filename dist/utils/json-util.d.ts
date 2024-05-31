@@ -1,10 +1,10 @@
 import _ from 'lodash';
-export declare type BasicJsonValue = boolean | number | string | null | undefined;
-export declare type JsonValue = BasicJsonValue | JsonArray | JsonMap;
+export type BasicJsonValue = boolean | number | string | null | undefined;
+export type JsonValue = BasicJsonValue | JsonArray | JsonMap;
 export interface JsonMap {
     [key: string]: JsonValue | undefined;
 }
-export declare type JsonArray = JsonValue[];
+export type JsonArray = JsonValue[];
 export declare class JsonBuilder {
     readonly json: JsonMap;
     constructor(json?: JsonMap);

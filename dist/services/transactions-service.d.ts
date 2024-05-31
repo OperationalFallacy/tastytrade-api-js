@@ -1,4 +1,4 @@
-import TastytradeHttpClient from "./tastytrade-http-client";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 export default class TransactionsService {
     private httpClient;
     constructor(httpClient: TastytradeHttpClient);

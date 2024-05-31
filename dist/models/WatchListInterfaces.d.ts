@@ -8,7 +8,7 @@ interface watchListEntries {
     "watchlist-entries": watchListEntry[];
     "order-index": number;
 }
-export declare type Instrument = 'Future' | 'Equity' | 'EquityOption';
+export type Instrument = 'Future' | 'Equity' | 'EquityOption';
 interface watchListEntry {
     symbol: string;
     "instrument-type": Instrument;

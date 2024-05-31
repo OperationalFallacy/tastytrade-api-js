@@ -1,14 +1,14 @@
-import type { JsonValue } from './utils/json-util';
-import { JsonBuilder } from './utils/json-util';
-import TastytradeSession from './models/tastytrade-session';
+import type { JsonValue } from './utils/json-util.js';
+import { JsonBuilder } from './utils/json-util.js';
+import TastytradeSession from './models/tastytrade-session.js';
 export declare enum STREAMER_STATE {
     Open = 0,
     Closed = 1,
     Error = 2
 }
-export declare type Disposer = () => void;
-export declare type StreamerStateObserver = (streamerState: STREAMER_STATE) => void;
-export declare type StreamerMessageObserver = (json: object) => void;
+export type Disposer = () => void;
+export type StreamerStateObserver = (streamerState: STREAMER_STATE) => void;
+export type StreamerMessageObserver = (json: object) => void;
 export declare class AccountStreamer {
     private readonly url;
     private readonly session;

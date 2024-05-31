@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -40,14 +40,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountStreamer = exports.STREAMER_STATE = void 0;
+var isomorphic_ws_1 = __importDefault(require("isomorphic-ws"));
 var lodash_1 = __importDefault(require("lodash"));
-var json_util_1 = require("./utils/json-util");
+var json_util_js_1 = require("./utils/json-util.js");
+var constants_js_1 = require("./utils/constants.js");
 var STREAMER_STATE;
 (function (STREAMER_STATE) {
     STREAMER_STATE[STREAMER_STATE["Open"] = 0] = "Open";
     STREAMER_STATE[STREAMER_STATE["Closed"] = 1] = "Closed";
     STREAMER_STATE[STREAMER_STATE["Error"] = 2] = "Error";
-})(STREAMER_STATE = exports.STREAMER_STATE || (exports.STREAMER_STATE = {}));
+})(STREAMER_STATE || (exports.STREAMER_STATE = STREAMER_STATE = {}));
 var MessageAction;
 (function (MessageAction) {
     MessageAction["ACCOUNT_SUBSCRIBE"] = "account-subscribe";
@@ -92,7 +94,7 @@ var AccountStreamer = /** @class */ (function () {
         this.logger = console;
         this.sendHeartbeat = function () {
             _this.clearHeartbeatTimerId();
-            _this.send(new json_util_1.JsonBuilder({ action: MessageAction.HEARTBEAT }));
+            _this.send(new json_util_js_1.JsonBuilder({ action: MessageAction.HEARTBEAT }));
         };
         this.handleOpen = function (event) {
             if (_this.startResolve === null) {
@@ -230,7 +232,10 @@ var AccountStreamer = /** @class */ (function () {
                 if (this.startPromise !== null) {
                     return [2 /*return*/, this.startPromise];
                 }
-                websocket = (this.websocket = new WebSocket(this.url));
+                this.websocket = new isomorphic_ws_1.default(this.url, [], {
+                    minVersion: constants_js_1.MinTlsVersion // TLS Config
+                });
+                websocket = this.websocket;
                 this.lastCloseEvent = null;
                 this.lastErrorEvent = null;
                 websocket.addEventListener('open', this.handleOpen);
@@ -332,7 +337,7 @@ var AccountStreamer = /** @class */ (function () {
      * @returns
      */
     AccountStreamer.prototype.subscribeTo = function (action, value) {
-        var json = new json_util_1.JsonBuilder();
+        var json = new json_util_js_1.JsonBuilder();
         json.add('action', action);
         if (!lodash_1.default.isUndefined(value)) {
             json.add('value', value);

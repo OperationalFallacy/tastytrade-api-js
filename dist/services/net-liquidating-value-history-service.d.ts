@@ -1,4 +1,4 @@
-import TastytradeHttpClient from "./tastytrade-http-client";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 export default class NetLiquidatingValueHistoryService {
     private httpClient;
     constructor(httpClient: TastytradeHttpClient);

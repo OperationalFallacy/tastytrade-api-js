@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_1 = __importDefault(require("../utils/response-util"));
+var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
 var SessionService = /** @class */ (function () {
     function SessionService(httpClient) {
         this.httpClient = httpClient;
@@ -56,7 +56,7 @@ var SessionService = /** @class */ (function () {
                         return [4 /*yield*/, this.httpClient.postData('/sessions', params, {})];
                     case 1:
                         sessionResponse = _a.sent();
-                        sessionData = (0, response_util_1.default)(sessionResponse);
+                        sessionData = (0, response_util_js_1.default)(sessionResponse);
                         this.httpClient.session.authToken = sessionData["session-token"];
                         return [2 /*return*/, sessionData];
                 }
@@ -71,7 +71,7 @@ var SessionService = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         params = { login: usernameOrEmail, rememberToken: rememberToken, rememberMe: rememberMe };
-                        _a = response_util_1.default;
+                        _a = response_util_js_1.default;
                         return [4 /*yield*/, this.httpClient.postData('/sessions', params, {})];
                     case 1:
                         sessionData = _a.apply(void 0, [_b.sent()]);
@@ -89,7 +89,7 @@ var SessionService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.postData('/sessions/validate', {}, {})];
                     case 1:
                         response = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(response)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(response)];
                 }
             });
         });
@@ -103,7 +103,7 @@ var SessionService = /** @class */ (function () {
                     case 1:
                         response = _a.sent();
                         this.httpClient.session.clear();
-                        return [2 /*return*/, (0, response_util_1.default)(response)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(response)];
                 }
             });
         });

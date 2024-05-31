@@ -1,4 +1,4 @@
-import TastytradeSession from "../models/tastytrade-session";
+import TastytradeSession from "../models/tastytrade-session.js";
 export default class TastytradeHttpClient {
     private readonly baseUrl;
     readonly session: TastytradeSession;

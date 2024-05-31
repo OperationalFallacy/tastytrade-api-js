@@ -7,6 +7,7 @@ exports.CandleType = exports.MarketDataSubscriptionType = void 0;
 var isomorphic_ws_1 = __importDefault(require("isomorphic-ws"));
 var lodash_1 = __importDefault(require("lodash"));
 var uuid_1 = require("uuid");
+var constants_js_1 = require("./utils/constants.js");
 var MarketDataSubscriptionType;
 (function (MarketDataSubscriptionType) {
     MarketDataSubscriptionType["Candle"] = "Candle";
@@ -16,7 +17,7 @@ var MarketDataSubscriptionType;
     MarketDataSubscriptionType["Profile"] = "Profile";
     MarketDataSubscriptionType["Greeks"] = "Greeks";
     MarketDataSubscriptionType["Underlying"] = "Underlying";
-})(MarketDataSubscriptionType = exports.MarketDataSubscriptionType || (exports.MarketDataSubscriptionType = {}));
+})(MarketDataSubscriptionType || (exports.MarketDataSubscriptionType = MarketDataSubscriptionType = {}));
 var CandleType;
 (function (CandleType) {
     CandleType["Tick"] = "t";
@@ -30,7 +31,7 @@ var CandleType;
     CandleType["Year"] = "y";
     CandleType["Volume"] = "v";
     CandleType["Price"] = "p";
-})(CandleType = exports.CandleType || (exports.CandleType = {}));
+})(CandleType || (exports.CandleType = CandleType = {}));
 // List of all subscription types except for Candle
 var AllSubscriptionTypes = Object.values(MarketDataSubscriptionType);
 var KeepaliveInterval = 30000; // 30 seconds
@@ -46,6 +47,7 @@ var MarketDataStreamer = /** @class */ (function () {
         this.authState = '';
         this.errorListeners = new Map();
         this.authStateListeners = new Map();
+        console.warn('MarketDataStreamer is deprecated and will be removed in a future release of @tastytrade/api. Use @dxfeed/dxlink-api instead.');
     }
     MarketDataStreamer.prototype.addDataListener = function (dataListener, channelId) {
         var _this = this;
@@ -80,7 +82,9 @@ var MarketDataStreamer = /** @class */ (function () {
             throw new Error('MarketDataStreamer is attempting to connect when an existing websocket is already connected');
         }
         this.token = token;
-        this.webSocket = new isomorphic_ws_1.default(url);
+        this.webSocket = new isomorphic_ws_1.default(url, [], {
+            minVersion: constants_js_1.MinTlsVersion // TLS Config
+        });
         this.webSocket.onopen = this.onOpen.bind(this);
         this.webSocket.onerror = this.onError.bind(this);
         this.webSocket.onmessage = this.handleMessageReceived.bind(this);
@@ -320,7 +324,7 @@ var MarketDataStreamer = /** @class */ (function () {
         this.errorListeners.forEach(function (listener) { return listener(error); });
     };
     MarketDataStreamer.prototype.handleMessageReceived = function (data) {
-        var messageData = lodash_1.default.get(data, 'data', data);
+        var messageData = lodash_1.default.get(data, 'data', '{}');
         var jsonData = JSON.parse(messageData);
         switch (jsonData.type) {
             case 'AUTH_STATE':

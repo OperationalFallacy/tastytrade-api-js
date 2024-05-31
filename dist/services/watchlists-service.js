@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_1 = __importDefault(require("../utils/response-util"));
+var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
 var WatchlistsService = /** @class */ (function () {
     function WatchlistsService(httpClient) {
         this.httpClient = httpClient;
@@ -53,7 +53,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/pairs-watchlists", {}, {})];
                     case 1:
                         pairsWatchlists = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(pairsWatchlists)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(pairsWatchlists)];
                 }
             });
         });
@@ -66,7 +66,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/pairs-watchlists/".concat(pairsWatchlistName), {}, {})];
                     case 1:
                         pairsWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(pairsWatchlist)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(pairsWatchlist)];
                 }
             });
         });
@@ -81,7 +81,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/public-watchlists", {}, { 'counts-only': countsOnly })];
                     case 1:
                         publicWatchlists = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(publicWatchlists)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(publicWatchlists)];
                 }
             });
         });
@@ -94,7 +94,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/public-watchlists/".concat(watchlistName), {}, {})];
                     case 1:
                         publicWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(publicWatchlist)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(publicWatchlist)];
                 }
             });
         });
@@ -108,7 +108,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.postData("/watchlists", watchlist, {})];
                     case 1:
                         accountWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(accountWatchlist)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(accountWatchlist)];
                 }
             });
         });
@@ -121,7 +121,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/watchlists", {}, {})];
                     case 1:
                         allWatchlists = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(allWatchlists)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(allWatchlists)];
                 }
             });
         });
@@ -134,7 +134,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.putData("/watchlists/".concat(watchlistName), replacementWatchlist, {})];
                     case 1:
                         watchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(watchlist)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(watchlist)];
                 }
             });
         });
@@ -147,7 +147,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.deleteData("/watchlists/".concat(watchlistName), {})];
                     case 1:
                         watchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(watchlist)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(watchlist)];
                 }
             });
         });
@@ -160,7 +160,7 @@ var WatchlistsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/watchlists/".concat(watchlistName), {}, {})];
                     case 1:
                         singleWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(singleWatchlist)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleWatchlist)];
                 }
             });
         });

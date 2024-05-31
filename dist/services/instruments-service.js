@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_1 = __importDefault(require("../utils/response-util"));
+var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
 var lodash_1 = __importDefault(require("lodash"));
 var InstrumentsService = /** @class */ (function () {
     function InstrumentsService(httpClient) {
@@ -57,7 +57,7 @@ var InstrumentsService = /** @class */ (function () {
                         return [4 /*yield*/, this.httpClient.getData("/instruments/cryptocurrencies", {}, queryParams)];
                     case 1:
                         cryptocurrencies = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(cryptocurrencies)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(cryptocurrencies)];
                 }
             });
         });
@@ -72,7 +72,7 @@ var InstrumentsService = /** @class */ (function () {
                         return [4 /*yield*/, this.httpClient.getData("/instruments/cryptocurrencies/".concat(encodedSymbol), {}, {})];
                     case 1:
                         singleCryptocurrency = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(singleCryptocurrency)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleCryptocurrency)];
                 }
             });
         });
@@ -86,7 +86,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities/active", {}, queryParams)];
                     case 1:
                         activeEquities = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(activeEquities)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(activeEquities)];
                 }
             });
         });
@@ -100,7 +100,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities", {}, queryParams)];
                     case 1:
                         equityDefinitions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(equityDefinitions)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(equityDefinitions)];
                 }
             });
         });
@@ -113,7 +113,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities/".concat(symbol), {}, {})];
                     case 1:
                         singleEquity = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(singleEquity)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleEquity)];
                 }
             });
         });
@@ -133,7 +133,7 @@ var InstrumentsService = /** @class */ (function () {
                         return [4 /*yield*/, this.httpClient.getData("/instruments/equity-options", {}, queryParams)];
                     case 1:
                         equityOptions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(equityOptions)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(equityOptions)];
                 }
             });
         });
@@ -147,7 +147,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equity-options/".concat(symbol), {}, queryParams)];
                     case 1:
                         singleOption = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(singleOption)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleOption)];
                 }
             });
         });
@@ -161,7 +161,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/futures", {}, queryParams)];
                     case 1:
                         futures = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(futures)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(futures)];
                 }
             });
         });
@@ -174,7 +174,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/futures/".concat(symbol), {}, {})];
                     case 1:
                         singleFuture = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(singleFuture)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleFuture)];
                 }
             });
         });
@@ -187,7 +187,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-option-products", {}, {})];
                     case 1:
                         futureOptionsProducts = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(futureOptionsProducts)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(futureOptionsProducts)];
                 }
             });
         });
@@ -200,7 +200,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-option-products/".concat(exchange, "/").concat(rootSymbol), {}, {})];
                     case 1:
                         singleFutureOptionProduct = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(singleFutureOptionProduct)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleFutureOptionProduct)];
                 }
             });
         });
@@ -214,7 +214,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-options", {}, queryParams)];
                     case 1:
                         futureOptions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(futureOptions)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(futureOptions)];
                 }
             });
         });
@@ -227,7 +227,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-options/".concat(symbol), {}, {})];
                     case 1:
                         singleFutureOption = _a.sent();
-                        return [2 /*return*/, (0, response_util_1.default)(singleFutureOption)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleFutureOption)];
                 }
             });
         });
@@ -240,7 +240,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-products", {}, {})];
                     case 1:
                         futuresProducts = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(futuresProducts)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(futuresProducts)];
                 }
             });
         });
@@ -253,7 +253,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-products/".concat(exchange, "/").concat(code), {}, {})];
                     case 1:
                         singleFutureProduct = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(singleFutureProduct)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleFutureProduct)];
                 }
             });
         });
@@ -266,7 +266,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/quantity-decimal-precisions", {}, {})];
                     case 1:
                         quantityDecimalPrecisions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(quantityDecimalPrecisions)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(quantityDecimalPrecisions)];
                 }
             });
         });
@@ -280,7 +280,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/warrants", {}, queryParams)];
                     case 1:
                         warrants = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(warrants)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(warrants)];
                 }
             });
         });
@@ -293,7 +293,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/warrants/".concat(symbol), {}, {})];
                     case 1:
                         singleWarrant = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(singleWarrant)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(singleWarrant)];
                 }
             });
         });
@@ -307,7 +307,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/futures-option-chains/".concat(symbol, "/nested"), {}, {})];
                     case 1:
                         nestedFutureOptionChains = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(nestedFutureOptionChains)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(nestedFutureOptionChains)];
                 }
             });
         });
@@ -320,7 +320,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/futures-option-chains/".concat(symbol), {}, {})];
                     case 1:
                         futureOptionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(futureOptionChain)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(futureOptionChain)];
                 }
             });
         });
@@ -334,7 +334,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/option-chains/".concat(symbol, "/nested"), {}, {})];
                     case 1:
                         nestedOptionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(nestedOptionChain)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(nestedOptionChain)];
                 }
             });
         });
@@ -347,7 +347,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/option-chains/".concat(symbol, "/compact"), {}, {})];
                     case 1:
                         compactOptionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(compactOptionChain)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(compactOptionChain)];
                 }
             });
         });
@@ -360,7 +360,7 @@ var InstrumentsService = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.httpClient.getData("/option-chains/".concat(symbol), {}, {})];
                     case 1:
                         optionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_1.default)(optionChain)];
+                        return [2 /*return*/, (0, response_util_js_1.default)(optionChain)];
                 }
             });
         });

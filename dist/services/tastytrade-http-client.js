@@ -25,7 +25,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -50,10 +50,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var tastytrade_session_1 = __importDefault(require("../models/tastytrade-session"));
+var tastytrade_session_js_1 = __importDefault(require("../models/tastytrade-session.js"));
 var axios_1 = __importDefault(require("axios"));
 var qs_1 = __importDefault(require("qs"));
-var json_util_1 = require("../utils/json-util");
+var json_util_js_1 = require("../utils/json-util.js");
 var lodash_1 = __importDefault(require("lodash"));
 var ParamsSerializer = {
     serialize: function (queryParams) {
@@ -63,14 +63,19 @@ var ParamsSerializer = {
 var TastytradeHttpClient = /** @class */ (function () {
     function TastytradeHttpClient(baseUrl) {
         this.baseUrl = baseUrl;
-        this.session = new tastytrade_session_1.default();
+        this.session = new tastytrade_session_js_1.default();
     }
     TastytradeHttpClient.prototype.getDefaultHeaders = function () {
-        return {
+        var headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization": this.session.authToken,
+            "Authorization": this.session.authToken
         };
+        // Only set user agent if running in node
+        if (typeof window === 'undefined') {
+            headers["User-Agent"] = 'tastytrade-sdk-js';
+        }
+        return headers;
     };
     TastytradeHttpClient.prototype.executeRequest = function (method, url, data, headers, params) {
         if (data === void 0) { data = {}; }
@@ -79,9 +84,9 @@ var TastytradeHttpClient = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             var dasherizedParams, dasherizedData, mergedHeaders, config;
             return __generator(this, function (_a) {
-                dasherizedParams = (0, json_util_1.recursiveDasherizeKeys)(params);
-                dasherizedData = (0, json_util_1.recursiveDasherizeKeys)(data);
-                mergedHeaders = __assign(__assign({}, this.getDefaultHeaders()), headers);
+                dasherizedParams = (0, json_util_js_1.recursiveDasherizeKeys)(params);
+                dasherizedData = (0, json_util_js_1.recursiveDasherizeKeys)(data);
+                mergedHeaders = __assign(__assign({}, headers), this.getDefaultHeaders());
                 config = lodash_1.default.omitBy({
                     method: method,
                     url: url,
