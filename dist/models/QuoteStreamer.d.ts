@@ -5,3 +5,4 @@ export interface quoteStreamerTokenResponse {
     'dxlink-url': string;
     level: string;
 }
+//# sourceMappingURL=QuoteStreamer.d.ts.map

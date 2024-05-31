@@ -11,3 +11,4 @@ export default class TastytradeHttpClient {
     patchData(url: string, data: object, headers: object): Promise<any>;
     deleteData(url: string, headers: object): Promise<any>;
 }
+//# sourceMappingURL=tastytrade-http-client.d.ts.map

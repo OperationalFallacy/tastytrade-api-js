@@ -3,3 +3,4 @@ export default class TastytradeSession {
     get isValid(): boolean;
     clear(): void;
 }
+//# sourceMappingURL=tastytrade-session.d.ts.map

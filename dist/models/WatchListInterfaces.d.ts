@@ -14,3 +14,4 @@ interface watchListEntry {
     "instrument-type": Instrument;
 }
 export {};
+//# sourceMappingURL=WatchListInterfaces.d.ts.map

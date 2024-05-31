@@ -10,3 +10,4 @@ export default class AccountsAndCustomersService {
     getQuoteStreamerTokens(): Promise<quoteStreamerTokenResponse>;
     getApiQuoteToken(): Promise<quoteStreamerTokenResponse>;
 }
+//# sourceMappingURL=accounts-and-customers-service.d.ts.map

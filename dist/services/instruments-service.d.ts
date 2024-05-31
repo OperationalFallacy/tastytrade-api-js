@@ -26,3 +26,4 @@ export default class InstrumentsService {
     getCompactOptionChain(symbol: string): Promise<any>;
     getOptionChain(symbol: string): Promise<any>;
 }
+//# sourceMappingURL=instruments-service.d.ts.map

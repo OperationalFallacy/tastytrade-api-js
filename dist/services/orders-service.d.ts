@@ -18,3 +18,4 @@ export default class OrderService {
     getLiveOrdersForCustomer(customerId: string): Promise<any>;
     getCustomerOrders(customerId: string, queryParams?: {}): Promise<any>;
 }
+//# sourceMappingURL=orders-service.d.ts.map

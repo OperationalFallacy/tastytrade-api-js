@@ -90,3 +90,4 @@ export declare class AccountStreamer {
     addMessageObserver(observer: StreamerMessageObserver): Disposer;
     private readonly handleOneMessage;
 }
+//# sourceMappingURL=account-streamer.d.ts.map

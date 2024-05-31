@@ -5,3 +5,4 @@ export default class MarginRequirementsService {
     getMarginRequirements(accountNumber: string): Promise<any>;
     postMarginRequirements(accountNumber: string, order: object): Promise<any>;
 }
+//# sourceMappingURL=margin-requirements-service.d.ts.map

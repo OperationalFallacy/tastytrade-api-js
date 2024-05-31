@@ -5,3 +5,4 @@ export default class AccountStatusService {
     constructor(httpClient: TastytradeHttpClient);
     getAccountStatus(accountNumber: string): Promise<accountStatusResponse>;
 }
+//# sourceMappingURL=account-status-service.d.ts.map

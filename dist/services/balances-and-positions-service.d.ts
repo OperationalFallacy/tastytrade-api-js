@@ -7,3 +7,4 @@ export default class BalancesAndPositionsService {
     getAccountBalanceValues(accountNumber: string): Promise<any>;
     getBalanceSnapshots(accountNumber: string, queryParams?: {}): Promise<getBalancesSnapshotResponse>;
 }
+//# sourceMappingURL=balances-and-positions-service.d.ts.map

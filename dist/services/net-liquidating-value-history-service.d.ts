@@ -5,3 +5,4 @@ export default class NetLiquidatingValueHistoryService {
     getNetLiquidatingValueHistory(accountNumber: string, queryParams?: {}): Promise<any>;
     getNetLiquidatingValue(accountNumber: string): Promise<any>;
 }
+//# sourceMappingURL=net-liquidating-value-history-service.d.ts.map

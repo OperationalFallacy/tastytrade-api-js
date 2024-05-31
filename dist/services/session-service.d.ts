@@ -7,3 +7,4 @@ export default class SessionService {
     validate(): Promise<any>;
     logout(): Promise<any>;
 }
+//# sourceMappingURL=session-service.d.ts.map

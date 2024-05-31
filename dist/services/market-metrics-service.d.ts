@@ -6,3 +6,4 @@ export default class MarketMetricsService {
     getHistoricalDividendData(symbol: string): Promise<any>;
     getHistoricalEarningsData(symbol: string, queryParams?: {}): Promise<any>;
 }
+//# sourceMappingURL=market-metrics-service.d.ts.map

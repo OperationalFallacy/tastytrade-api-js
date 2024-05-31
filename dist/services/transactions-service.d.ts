@@ -6,3 +6,4 @@ export default class TransactionsService {
     getTotalFees(accountNumber: string): Promise<any>;
     getAccountTransactions(accountNumber: string, queryParams?: {}): Promise<any>;
 }
+//# sourceMappingURL=transactions-service.d.ts.map

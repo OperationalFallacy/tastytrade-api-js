@@ -12,3 +12,4 @@ export default class WatchlistsService {
     deleteWatchlist(watchlistName: string): Promise<any>;
     getSingleWatchlist(watchlistName: string): Promise<any>;
 }
+//# sourceMappingURL=watchlists-service.d.ts.map

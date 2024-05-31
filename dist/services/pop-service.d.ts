@@ -1,4 +1,4 @@
-import TastytradeHttpClient from "./tastytrade-http-client";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 export interface Pop50Request {
     "current-stock-price": number;
     "histogram-ideal-range-count": number;
@@ -76,3 +76,4 @@ export default class PopService {
      */
     get50Pop(requestData: Pop50Request): Promise<Pop50Response>;
 }
+//# sourceMappingURL=pop-service.d.ts.map

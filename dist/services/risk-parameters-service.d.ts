@@ -5,3 +5,4 @@ export default class RiskParametersService {
     getEffectiveMarginRequirements(accountNumber: string, underlyingSymbol: string): Promise<any>;
     getPositionLimit(accountNumber: string): Promise<any>;
 }
+//# sourceMappingURL=risk-parameters-service.d.ts.map

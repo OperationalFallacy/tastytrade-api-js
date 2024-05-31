@@ -1,4 +1,4 @@
-import { PRICE_EFFECTS } from "./OrderInterfaces";
+import { PRICE_EFFECTS } from "./OrderInterfaces.js";
 export type QUANTITY_DIRECTION = "Short" | "Long";
 
 export interface Position {

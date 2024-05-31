@@ -1,170 +1,55 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
-var WatchlistsService = /** @class */ (function () {
-    function WatchlistsService(httpClient) {
+import extractResponseData from "../utils/response-util.js";
+export default class WatchlistsService {
+    constructor(httpClient) {
         this.httpClient = httpClient;
     }
     //Pairs Watchlists: Allows an API client to fetch pairs watchlists.
-    WatchlistsService.prototype.getPairsWatchlists = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var pairsWatchlists;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/pairs-watchlists", {}, {})];
-                    case 1:
-                        pairsWatchlists = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(pairsWatchlists)];
-                }
-            });
-        });
-    };
-    WatchlistsService.prototype.getPairsWatchlist = function (pairsWatchlistName) {
-        return __awaiter(this, void 0, void 0, function () {
-            var pairsWatchlist;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/pairs-watchlists/".concat(pairsWatchlistName), {}, {})];
-                    case 1:
-                        pairsWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(pairsWatchlist)];
-                }
-            });
-        });
-    };
+    async getPairsWatchlists() {
+        //Returns a list of all tastyworks pairs watchlists
+        const pairsWatchlists = await this.httpClient.getData(`/pairs-watchlists`, {}, {});
+        return extractResponseData(pairsWatchlists);
+    }
+    async getPairsWatchlist(pairsWatchlistName) {
+        //Returns a requested tastyworks pairs watchlist
+        const pairsWatchlist = await this.httpClient.getData(`/pairs-watchlists/${pairsWatchlistName}`, {}, {});
+        return extractResponseData(pairsWatchlist);
+    }
     //Public Watchlists: Allows an API client to fetch tastyworks watchlists.
-    WatchlistsService.prototype.getPublicWatchlists = function () {
-        return __awaiter(this, arguments, void 0, function (countsOnly) {
-            var publicWatchlists;
-            if (countsOnly === void 0) { countsOnly = false; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/public-watchlists", {}, { 'counts-only': countsOnly })];
-                    case 1:
-                        publicWatchlists = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(publicWatchlists)];
-                }
-            });
-        });
-    };
-    WatchlistsService.prototype.getPublicWatchlist = function (watchlistName) {
-        return __awaiter(this, void 0, void 0, function () {
-            var publicWatchlist;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/public-watchlists/".concat(watchlistName), {}, {})];
-                    case 1:
-                        publicWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(publicWatchlist)];
-                }
-            });
-        });
-    };
+    async getPublicWatchlists(countsOnly = false) {
+        //Returns a list of all tastyworks watchlists
+        const publicWatchlists = await this.httpClient.getData(`/public-watchlists`, {}, { 'counts-only': countsOnly });
+        return extractResponseData(publicWatchlists);
+    }
+    async getPublicWatchlist(watchlistName) {
+        //Returns a requested tastyworks watchlist
+        const publicWatchlist = await this.httpClient.getData(`/public-watchlists/${watchlistName}`, {}, {});
+        return extractResponseData(publicWatchlist);
+    }
     //User Watchlists: Allows an API client to fetch a user's watchlists.
-    WatchlistsService.prototype.createAccountWatchlist = function (watchlist) {
-        return __awaiter(this, void 0, void 0, function () {
-            var accountWatchlist;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.postData("/watchlists", watchlist, {})];
-                    case 1:
-                        accountWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(accountWatchlist)];
-                }
-            });
-        });
-    };
-    WatchlistsService.prototype.getAllWatchlists = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var allWatchlists;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/watchlists", {}, {})];
-                    case 1:
-                        allWatchlists = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(allWatchlists)];
-                }
-            });
-        });
-    };
-    WatchlistsService.prototype.replaceWatchlist = function (watchlistName, replacementWatchlist) {
-        return __awaiter(this, void 0, void 0, function () {
-            var watchlist;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.putData("/watchlists/".concat(watchlistName), replacementWatchlist, {})];
-                    case 1:
-                        watchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(watchlist)];
-                }
-            });
-        });
-    };
-    WatchlistsService.prototype.deleteWatchlist = function (watchlistName) {
-        return __awaiter(this, void 0, void 0, function () {
-            var watchlist;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.deleteData("/watchlists/".concat(watchlistName), {})];
-                    case 1:
-                        watchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(watchlist)];
-                }
-            });
-        });
-    };
-    WatchlistsService.prototype.getSingleWatchlist = function (watchlistName) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleWatchlist;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/watchlists/".concat(watchlistName), {}, {})];
-                    case 1:
-                        singleWatchlist = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleWatchlist)];
-                }
-            });
-        });
-    };
-    return WatchlistsService;
-}());
-exports.default = WatchlistsService;
+    async createAccountWatchlist(watchlist) {
+        //Create an account watchlist
+        const accountWatchlist = await this.httpClient.postData(`/watchlists`, watchlist, {});
+        return extractResponseData(accountWatchlist);
+    }
+    async getAllWatchlists() {
+        //Returns a list of all watchlists for the given account
+        const allWatchlists = await this.httpClient.getData(`/watchlists`, {}, {});
+        return extractResponseData(allWatchlists);
+    }
+    async replaceWatchlist(watchlistName, replacementWatchlist) {
+        //Replace all properties of an account watchlist
+        const watchlist = await this.httpClient.putData(`/watchlists/${watchlistName}`, replacementWatchlist, {});
+        return extractResponseData(watchlist);
+    }
+    async deleteWatchlist(watchlistName) {
+        //Delete a watchlist for the given account
+        const watchlist = await this.httpClient.deleteData(`/watchlists/${watchlistName}`, {});
+        return extractResponseData(watchlist);
+    }
+    async getSingleWatchlist(watchlistName) {
+        //Returns a requested account watchlist
+        const singleWatchlist = await this.httpClient.getData(`/watchlists/${watchlistName}`, {}, {});
+        return extractResponseData(singleWatchlist);
+    }
+}
+//# sourceMappingURL=watchlists-service.js.map

@@ -4,3 +4,4 @@ export default class SymbolSearchService {
     constructor(httpClient: TastytradeHttpClient);
     getSymbolData(symbol: string): Promise<any>;
 }
+//# sourceMappingURL=symbol-search-service.d.ts.map

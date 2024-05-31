@@ -1,370 +1,134 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var response_util_js_1 = __importDefault(require("../utils/response-util.js"));
-var lodash_1 = __importDefault(require("lodash"));
-var InstrumentsService = /** @class */ (function () {
-    function InstrumentsService(httpClient) {
+import extractResponseData from "../utils/response-util.js";
+import _ from 'lodash';
+export default class InstrumentsService {
+    constructor(httpClient) {
         this.httpClient = httpClient;
     }
     //Instruments: Allows an API client to fetch data about instruments.
-    InstrumentsService.prototype.getCryptocurrencies = function () {
-        return __awaiter(this, arguments, void 0, function (symbols) {
-            var queryParams, cryptocurrencies;
-            if (symbols === void 0) { symbols = []; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        queryParams = { symbol: symbols };
-                        return [4 /*yield*/, this.httpClient.getData("/instruments/cryptocurrencies", {}, queryParams)];
-                    case 1:
-                        cryptocurrencies = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(cryptocurrencies)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleCryptocurrency = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var encodedSymbol, singleCryptocurrency;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        encodedSymbol = encodeURIComponent(symbol);
-                        return [4 /*yield*/, this.httpClient.getData("/instruments/cryptocurrencies/".concat(encodedSymbol), {}, {})];
-                    case 1:
-                        singleCryptocurrency = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleCryptocurrency)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getActiveEquities = function () {
-        return __awaiter(this, arguments, void 0, function (queryParams) {
-            var activeEquities;
-            if (queryParams === void 0) { queryParams = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities/active", {}, queryParams)];
-                    case 1:
-                        activeEquities = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(activeEquities)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getEquityDefinitions = function () {
-        return __awaiter(this, arguments, void 0, function (queryParams) {
-            var equityDefinitions;
-            if (queryParams === void 0) { queryParams = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities", {}, queryParams)];
-                    case 1:
-                        equityDefinitions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(equityDefinitions)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleEquity = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleEquity;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equities/".concat(symbol), {}, {})];
-                    case 1:
-                        singleEquity = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleEquity)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getEquityOptions = function (symbols_1) {
-        return __awaiter(this, arguments, void 0, function (symbols, active, withExpired) {
-            var queryParams, equityOptions;
-            if (active === void 0) { active = true; }
-            if (withExpired === void 0) { withExpired = false; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (lodash_1.default.isEmpty(symbols)) {
-                            throw new Error('Symbols are required for InstrumentService.getEquityOptions');
-                        }
-                        queryParams = { symbols: symbols, active: active, withExpired: withExpired };
-                        return [4 /*yield*/, this.httpClient.getData("/instruments/equity-options", {}, queryParams)];
-                    case 1:
-                        equityOptions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(equityOptions)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleEquityOption = function (symbol_1) {
-        return __awaiter(this, arguments, void 0, function (symbol, queryParams) {
-            var singleOption;
-            if (queryParams === void 0) { queryParams = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/equity-options/".concat(symbol), {}, queryParams)];
-                    case 1:
-                        singleOption = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleOption)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getFutures = function () {
-        return __awaiter(this, arguments, void 0, function (queryParams) {
-            var futures;
-            if (queryParams === void 0) { queryParams = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/futures", {}, queryParams)];
-                    case 1:
-                        futures = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(futures)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleFuture = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleFuture;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/futures/".concat(symbol), {}, {})];
-                    case 1:
-                        singleFuture = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleFuture)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getFutureOptionsProducts = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var futureOptionsProducts;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-option-products", {}, {})];
-                    case 1:
-                        futureOptionsProducts = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(futureOptionsProducts)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleFutureOptionProduct = function (exchange, rootSymbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleFutureOptionProduct;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-option-products/".concat(exchange, "/").concat(rootSymbol), {}, {})];
-                    case 1:
-                        singleFutureOptionProduct = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleFutureOptionProduct)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getFutureOptions = function () {
-        return __awaiter(this, arguments, void 0, function (queryParams) {
-            var futureOptions;
-            if (queryParams === void 0) { queryParams = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-options", {}, queryParams)];
-                    case 1:
-                        futureOptions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(futureOptions)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleFutureOption = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleFutureOption;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-options/".concat(symbol), {}, {})];
-                    case 1:
-                        singleFutureOption = _a.sent();
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleFutureOption)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getFuturesProducts = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var futuresProducts;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-products", {}, {})];
-                    case 1:
-                        futuresProducts = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(futuresProducts)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleFutureProduct = function (exchange, code) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleFutureProduct;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/future-products/".concat(exchange, "/").concat(code), {}, {})];
-                    case 1:
-                        singleFutureProduct = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleFutureProduct)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getQuantityDecimalPrecisions = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var quantityDecimalPrecisions;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/quantity-decimal-precisions", {}, {})];
-                    case 1:
-                        quantityDecimalPrecisions = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(quantityDecimalPrecisions)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getWarrants = function () {
-        return __awaiter(this, arguments, void 0, function (queryParams) {
-            var warrants;
-            if (queryParams === void 0) { queryParams = {}; }
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/warrants", {}, queryParams)];
-                    case 1:
-                        warrants = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(warrants)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getSingleWarrant = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var singleWarrant;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/instruments/warrants/".concat(symbol), {}, {})];
-                    case 1:
-                        singleWarrant = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(singleWarrant)];
-                }
-            });
-        });
-    };
+    async getCryptocurrencies(symbols = []) {
+        //Retrieve a set of cryptocurrencies given an array of one or more symbols.
+        const queryParams = { symbol: symbols };
+        const cryptocurrencies = (await this.httpClient.getData(`/instruments/cryptocurrencies`, {}, queryParams));
+        return extractResponseData(cryptocurrencies);
+    }
+    async getSingleCryptocurrency(symbol) {
+        //Retrieve a cryptocurrency given a symbol.
+        const encodedSymbol = encodeURIComponent(symbol);
+        const singleCryptocurrency = (await this.httpClient.getData(`/instruments/cryptocurrencies/${encodedSymbol}`, {}, {}));
+        return extractResponseData(singleCryptocurrency);
+    }
+    async getActiveEquities(queryParams = {}) {
+        //Returns all active equities in a paginated fashion
+        const activeEquities = (await this.httpClient.getData(`/instruments/equities/active`, {}, queryParams));
+        return extractResponseData(activeEquities);
+    }
+    async getEquityDefinitions(queryParams = {}) {
+        //Returns a set of equity definitions given an array of one or more symbols
+        const equityDefinitions = (await this.httpClient.getData(`/instruments/equities`, {}, queryParams));
+        return extractResponseData(equityDefinitions);
+    }
+    async getSingleEquity(symbol) {
+        //Returns a single equity definition for the provided symbol
+        const singleEquity = (await this.httpClient.getData(`/instruments/equities/${symbol}`, {}, {}));
+        return extractResponseData(singleEquity);
+    }
+    async getEquityOptions(symbols, active = true, withExpired = false) {
+        if (_.isEmpty(symbols)) {
+            throw new Error('Symbols are required for InstrumentService.getEquityOptions');
+        }
+        //Returns a set of equity options given one or more symbols
+        const queryParams = { symbols, active, withExpired };
+        const equityOptions = (await this.httpClient.getData(`/instruments/equity-options`, {}, queryParams));
+        return extractResponseData(equityOptions);
+    }
+    async getSingleEquityOption(symbol, queryParams = {}) {
+        //Get equity option by symbol
+        const singleOption = await this.httpClient.getData(`/instruments/equity-options/${symbol}`, {}, queryParams);
+        return extractResponseData(singleOption);
+    }
+    async getFutures(queryParams = {}) {
+        //Returns a set of outright futures given an array of one or more symbols.
+        const futures = (await this.httpClient.getData(`/instruments/futures`, {}, queryParams));
+        return extractResponseData(futures);
+    }
+    async getSingleFuture(symbol) {
+        //Returns an outright future given a symbol.
+        const singleFuture = await this.httpClient.getData(`/instruments/futures/${symbol}`, {}, {});
+        return extractResponseData(singleFuture);
+    }
+    async getFutureOptionsProducts() {
+        //Returns metadata for all supported future option products
+        const futureOptionsProducts = (await this.httpClient.getData(`/instruments/future-option-products`, {}, {}));
+        return extractResponseData(futureOptionsProducts);
+    }
+    async getSingleFutureOptionProduct(exchange, rootSymbol) {
+        //Get a future option product by exchange and root symbol
+        const singleFutureOptionProduct = (await this.httpClient.getData(`/instruments/future-option-products/${exchange}/${rootSymbol}`, {}, {}));
+        return extractResponseData(singleFutureOptionProduct);
+    }
+    async getFutureOptions(queryParams = {}) {
+        //Returns a set of future option(s) given an array of one or more symbols.
+        //Uses TW symbology: [./ESZ9 EW4U9 190927P2975]
+        const futureOptions = (await this.httpClient.getData(`/instruments/future-options`, {}, queryParams));
+        return extractResponseData(futureOptions);
+    }
+    async getSingleFutureOption(symbol) {
+        //Returns a future option given a symbol. Uses TW symbology: ./ESZ9 EW4U9 190927P2975
+        const singleFutureOption = await this.httpClient.getData(`/instruments/future-options/${symbol}`, {}, {});
+        return extractResponseData(singleFutureOption);
+    }
+    async getFuturesProducts() {
+        //Returns metadata for all supported futures products
+        const futuresProducts = (await this.httpClient.getData(`/instruments/future-products`, {}, {}));
+        return extractResponseData(futuresProducts);
+    }
+    async getSingleFutureProduct(exchange, code) {
+        //Get future product from exchange and product code
+        const singleFutureProduct = (await this.httpClient.getData(`/instruments/future-products/${exchange}/${code}`, {}, {}));
+        return extractResponseData(singleFutureProduct);
+    }
+    async getQuantityDecimalPrecisions() {
+        //Retrieve all quantity decimal precisions.
+        const quantityDecimalPrecisions = (await this.httpClient.getData(`/instruments/quantity-decimal-precisions`, {}, {}));
+        return extractResponseData(quantityDecimalPrecisions);
+    }
+    async getWarrants(queryParams = {}) {
+        //Returns a set of warrant definitions that can be filtered by parameters
+        const warrants = (await this.httpClient.getData(`/instruments/warrants`, {}, queryParams));
+        return extractResponseData(warrants);
+    }
+    async getSingleWarrant(symbol) {
+        //Returns a single warrant definition for the provided symbol
+        const singleWarrant = (await this.httpClient.getData(`/instruments/warrants/${symbol}`, {}, {}));
+        return extractResponseData(singleWarrant);
+    }
     //Futures-option-chains: Allows an API client to fetch futures option chains.
-    InstrumentsService.prototype.getNestedFutureOptionChains = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var nestedFutureOptionChains;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/futures-option-chains/".concat(symbol, "/nested"), {}, {})];
-                    case 1:
-                        nestedFutureOptionChains = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(nestedFutureOptionChains)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getFutureOptionChain = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var futureOptionChain;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/futures-option-chains/".concat(symbol), {}, {})];
-                    case 1:
-                        futureOptionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(futureOptionChain)];
-                }
-            });
-        });
-    };
+    async getNestedFutureOptionChains(symbol) {
+        //Returns a futures option chain given a futures product code in a nested form to minimize redundant processing
+        const nestedFutureOptionChains = (await this.httpClient.getData(`/futures-option-chains/${symbol}/nested`, {}, {}));
+        return extractResponseData(nestedFutureOptionChains);
+    }
+    async getFutureOptionChain(symbol) {
+        //Returns a futures option chain given a futures product code, i.e. ES
+        const futureOptionChain = (await this.httpClient.getData(`/futures-option-chains/${symbol}`, {}, {}));
+        return extractResponseData(futureOptionChain);
+    }
     //Option-chains: Allows an API client to fetch futures option chains.
-    InstrumentsService.prototype.getNestedOptionChain = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var nestedOptionChain;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/option-chains/".concat(symbol, "/nested"), {}, {})];
-                    case 1:
-                        nestedOptionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(nestedOptionChain)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getCompactOptionChain = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var compactOptionChain;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/option-chains/".concat(symbol, "/compact"), {}, {})];
-                    case 1:
-                        compactOptionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(compactOptionChain)];
-                }
-            });
-        });
-    };
-    InstrumentsService.prototype.getOptionChain = function (symbol) {
-        return __awaiter(this, void 0, void 0, function () {
-            var optionChain;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.httpClient.getData("/option-chains/".concat(symbol), {}, {})];
-                    case 1:
-                        optionChain = (_a.sent());
-                        return [2 /*return*/, (0, response_util_js_1.default)(optionChain)];
-                }
-            });
-        });
-    };
-    return InstrumentsService;
-}());
-exports.default = InstrumentsService;
+    async getNestedOptionChain(symbol) {
+        //Returns an option chain given an underlying symbol,
+        //i.e. AAPL in a nested form to minimize redundant processing
+        const nestedOptionChain = (await this.httpClient.getData(`/option-chains/${symbol}/nested`, {}, {}));
+        return extractResponseData(nestedOptionChain);
+    }
+    async getCompactOptionChain(symbol) {
+        //Returns an option chain given an underlying symbol, i.e. AAPL in a compact form to minimize content size
+        const compactOptionChain = (await this.httpClient.getData(`/option-chains/${symbol}/compact`, {}, {}));
+        return extractResponseData(compactOptionChain);
+    }
+    async getOptionChain(symbol) {
+        //Returns an option chain given an underlying symbol, i.e. AAPL
+        const optionChain = (await this.httpClient.getData(`/option-chains/${symbol}`, {}, {}));
+        return extractResponseData(optionChain);
+    }
+}
+//# sourceMappingURL=instruments-service.js.map

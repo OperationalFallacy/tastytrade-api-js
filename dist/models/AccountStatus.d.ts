@@ -31,3 +31,4 @@ export interface accountStatusResponse {
     "enhanced-fraud-safeguards-enabled-at": string;
     "updated-at": string;
 }
+//# sourceMappingURL=AccountStatus.d.ts.map
