@@ -1,7 +1,9 @@
+import WebSocket from 'isomorphic-ws'
 import _ from 'lodash'
-import type { JsonMap, JsonValue } from './utils/json-util'
-import { JsonBuilder } from './utils/json-util'
-import TastytradeSession from './models/tastytrade-session'
+import type { JsonMap, JsonValue } from './utils/json-util.js'
+import { JsonBuilder } from './utils/json-util.js'
+import TastytradeSession from './models/tastytrade-session.js'
+import { MinTlsVersion } from './utils/constants.js'
 
 export enum STREAMER_STATE {
   Open = 0,
@@ -122,7 +124,10 @@ export class AccountStreamer {
       return this.startPromise
     }
 
-    const websocket = (this.websocket = new WebSocket(this.url))
+    this.websocket = new WebSocket(this.url, [], {
+      minVersion: MinTlsVersion // TLS Config
+    })
+    const websocket = this.websocket
     this.lastCloseEvent = null
     this.lastErrorEvent = null
     websocket.addEventListener('open', this.handleOpen)
@@ -299,7 +304,7 @@ export class AccountStreamer {
     this.queued = []
   }
 
-  private readonly handleOpen = (event: Event) => {
+  private readonly handleOpen = (event: WebSocket.Event) => {
     if (this.startResolve === null) {
       return
     }
@@ -314,7 +319,7 @@ export class AccountStreamer {
     this.scheduleHeartbeatTimer()
   }
 
-  private readonly handleClose = (event: CloseEvent) => {
+  private readonly handleClose = (event: WebSocket.CloseEvent) => {
     this.logger.info('AccountStreamer closed', event)
     if (this.websocket === null) {
       return
@@ -325,7 +330,7 @@ export class AccountStreamer {
     this.teardown()
   }
 
-  private readonly handleError = (event: Event) => {
+  private readonly handleError = (event: WebSocket.ErrorEvent) => {
     if (this.websocket === null) {
       return
     }
@@ -343,7 +348,7 @@ export class AccountStreamer {
     this.teardown()
   }
 
-  private readonly handleMessage = (event: MessageEvent) => {
+  private readonly handleMessage = (event: WebSocket.MessageEvent) => {
     const json = JSON.parse(event.data as string) as JsonMap
 
     if (json.results !== undefined) {

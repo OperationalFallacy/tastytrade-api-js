@@ -1,6 +1,7 @@
 import WebSocket from 'isomorphic-ws'
 import _ from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
+import { MinTlsVersion } from './utils/constants.js'
 
 export enum MarketDataSubscriptionType {
   Candle = 'Candle',
@@ -53,6 +54,10 @@ export default class MarketDataStreamer {
   private errorListeners = new Map()
   private authStateListeners = new Map()
 
+  constructor() {
+    console.warn('MarketDataStreamer is deprecated and will be removed in a future release of @tastytrade/api. Use @dxfeed/dxlink-api instead.')
+  }
+
   addDataListener(dataListener: MarketDataListener, channelId: number | null = null): Remover {
     if (_.isNil(dataListener)) {
       return _.noop
@@ -89,7 +94,9 @@ export default class MarketDataStreamer {
     }
 
     this.token = token
-    this.webSocket = new WebSocket(url)
+    this.webSocket = new WebSocket(url, [], {
+      minVersion: MinTlsVersion // TLS Config
+    })
     this.webSocket.onopen = this.onOpen.bind(this)
     this.webSocket.onerror = this.onError.bind(this)
     this.webSocket.onmessage = this.handleMessageReceived.bind(this)
@@ -343,9 +350,9 @@ export default class MarketDataStreamer {
     this.errorListeners.forEach(listener => listener(error))
   }
 
-  private handleMessageReceived(data: string) {
-    const messageData = _.get(data, 'data', data)
-    const jsonData = JSON.parse(messageData)
+  private handleMessageReceived(data: WebSocket.MessageEvent) {
+    const messageData = _.get(data, 'data', '{}')
+    const jsonData = JSON.parse(messageData as string)
     switch (jsonData.type) {
       case 'AUTH_STATE':
         this.handleAuthStateMessage(jsonData)

@@ -18,6 +18,7 @@ import TransactionsService from "./services/transactions-service"
 import WatchlistsService from "./services/watchlists-service"
 import TastytradeSession from "./models/tastytrade-session"
 import PopService from "./services/pop-service"
+
 export default class TastytradeClient {
   public readonly httpClient: TastytradeHttpClient
 
@@ -63,5 +64,5 @@ export default class TastytradeClient {
   }
 }
 
-export { MarketDataStreamer, MarketDataSubscriptionType, MarketDataListener, CandleSubscriptionOptions, CandleType }
-export { AccountStreamer, STREAMER_STATE, Disposer, StreamerStateObserver }
+export { MarketDataStreamer, MarketDataSubscriptionType, type MarketDataListener, type CandleSubscriptionOptions, CandleType }
+export { AccountStreamer, STREAMER_STATE, type Disposer, type StreamerStateObserver }

@@ -1,6 +1,6 @@
-import { OrderResponse, submitOrderResponse } from "../models/OrderInterfaces";
-import extractResponseData from "../utils/response-util";
-import TastytradeHttpClient from "./tastytrade-http-client";
+import type { OrderResponse, submitOrderResponse } from "../models/OrderInterfaces.js";
+import extractResponseData from "../utils/response-util.js";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 
 export default class OrderService {
     constructor(private httpClient: TastytradeHttpClient) {
@@ -28,6 +28,12 @@ export default class OrderService {
     async cancelOrder(accountNumber: string, orderId: number):Promise<OrderResponse>{
         //Requests order cancellation
         const order = await this.httpClient.deleteData(`/accounts/${accountNumber}/orders/${orderId}`, {})
+        return extractResponseData(order)
+    }
+
+    async cancelComplexOrder(accountNumber: string, orderId: number){
+        //Requests order cancellation
+        const order = await this.httpClient.deleteData(`/accounts/${accountNumber}/complex-orders/${orderId}`, {})
         return extractResponseData(order)
     }
 
@@ -61,10 +67,16 @@ export default class OrderService {
         return extractResponseData(orderResponse)
     }
 
+    async createComplexOrder(accountNumber: string, order: object){
+        //Accepts a json document containing parameters to create an order for the client.
+        const orderResponse = await this.httpClient.postData(`/accounts/${accountNumber}/complex-orders`, order , {})
+        return extractResponseData(orderResponse)
+    }
+
     async postOrderDryRun(accountNumber: string, order: object): Promise<submitOrderResponse>{
         //Accepts a json document containing parameters to create an order and then runs the prefights without placing the order.
         const orderDryRun = await this.httpClient.postData(`/accounts/${accountNumber}/orders/dry-run`, order , {})
-        return extractResponseData({data: orderDryRun, errors: {}})
+        return extractResponseData(orderDryRun)
     }
 
     async getLiveOrdersForCustomer(customerId: string){

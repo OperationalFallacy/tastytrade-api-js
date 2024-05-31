@@ -1,8 +1,8 @@
-import { accountStatusResponse } from "../models/AccountStatus";
-import extractResponseData from "../utils/response-util";
-import TastytradeHttpClient from "./tastytrade-http-client";
+import type { accountStatusResponse } from "../models/AccountStatus.js";
+import extractResponseData from "../utils/response-util.js";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 
-// create the central class that aggregates all services from dmoss
+// create the central class that aggregates all services
 export default class AccountStatusService {
     constructor(private httpClient: TastytradeHttpClient) {
     }

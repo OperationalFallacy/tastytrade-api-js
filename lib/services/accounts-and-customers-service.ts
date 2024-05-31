@@ -1,6 +1,6 @@
-import { quoteStreamerTokenResponse } from "../models/QuoteStreamer";
-import extractResponseData from "../utils/response-util";
-import TastytradeHttpClient from "./tastytrade-http-client";
+import type { quoteStreamerTokenResponse } from "../models/QuoteStreamer.js";
+import extractResponseData from "../utils/response-util.js";
+import TastytradeHttpClient from "./tastytrade-http-client.js";
 
 export default class AccountsAndCustomersService {
     constructor(private httpClient: TastytradeHttpClient) {
