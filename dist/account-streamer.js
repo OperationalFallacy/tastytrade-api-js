@@ -1,4 +1,4 @@
-import WebSocket from "ws";
+const WebSocket = globalThis.WebSocket;
 import { JsonBuilder } from "./utils/json-util.js";
 const isNil = (value) => value == null;
 export var STREAMER_STATE;

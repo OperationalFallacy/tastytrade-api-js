@@ -1,4 +1,4 @@
-import WebSocket, { Event, MessageEvent, CloseEvent } from "ws";
+const WebSocket = globalThis.WebSocket;
 import type { JsonMap, JsonValue } from "./utils/json-util.js";
 import { JsonBuilder } from "./utils/json-util.js";
 import TastytradeSession from "./models/tastytrade-session.js";
@@ -306,7 +306,7 @@ export class AccountStreamer {
     this.queued = [];
   }
 
-  private readonly handleOpen = (event: Event) => {
+  private readonly handleOpen = (event: any) => {
     if (this.startResolve === null) {
       return;
     }
@@ -321,7 +321,7 @@ export class AccountStreamer {
     this.scheduleHeartbeatTimer();
   };
 
-  private readonly handleClose = (event: CloseEvent) => {
+  private readonly handleClose = (event: any) => {
     this.logger.info("AccountStreamer closed", event);
     if (this.websocket === null) {
       return;
@@ -332,7 +332,7 @@ export class AccountStreamer {
     this.teardown();
   };
 
-  private readonly handleError = (event: Event) => {
+  private readonly handleError = (event: any) => {
     if (this.websocket === null) {
       return;
     }
@@ -350,7 +350,7 @@ export class AccountStreamer {
     this.teardown();
   };
 
-  private readonly handleMessage = (event: MessageEvent) => {
+  private readonly handleMessage = (event: any) => {
     const json = JSON.parse(event.data as string) as JsonMap;
 
     if (json.results !== undefined) {
