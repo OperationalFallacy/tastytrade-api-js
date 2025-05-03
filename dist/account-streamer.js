@@ -1,6 +1,5 @@
-import WebSocket from "isomorphic-ws";
+import { WebSocket } from "undici";
 import { JsonBuilder } from "./utils/json-util.js";
-import { MinTlsVersion } from "./utils/constants.js";
 const isNil = (value) => value == null;
 export var STREAMER_STATE;
 (function (STREAMER_STATE) {
@@ -93,9 +92,7 @@ export class AccountStreamer {
         if (this.startPromise !== null) {
             return this.startPromise;
         }
-        this.websocket = new WebSocket(this.url, [], {
-            minVersion: MinTlsVersion, // TLS Config
-        });
+        this.websocket = new WebSocket(this.url);
         const websocket = this.websocket;
         this.lastCloseEvent = null;
         this.lastErrorEvent = null;

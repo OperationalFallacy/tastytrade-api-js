@@ -1,8 +1,7 @@
-import WebSocket from "isomorphic-ws";
+import { WebSocket } from "undici";
 import type { JsonMap, JsonValue } from "./utils/json-util.js";
 import { JsonBuilder } from "./utils/json-util.js";
 import TastytradeSession from "./models/tastytrade-session.js";
-import { MinTlsVersion } from "./utils/constants.js";
 
 const isNil = (value: unknown): boolean => value == null;
 
@@ -128,9 +127,7 @@ export class AccountStreamer {
       return this.startPromise;
     }
 
-    this.websocket = new WebSocket(this.url, [], {
-      minVersion: MinTlsVersion, // TLS Config
-    });
+    this.websocket = new WebSocket(this.url);
     const websocket = this.websocket;
     this.lastCloseEvent = null;
     this.lastErrorEvent = null;
@@ -309,7 +306,7 @@ export class AccountStreamer {
     this.queued = [];
   }
 
-  private readonly handleOpen = (event: WebSocket.Event) => {
+  private readonly handleOpen = (event: Event) => {
     if (this.startResolve === null) {
       return;
     }
@@ -324,7 +321,7 @@ export class AccountStreamer {
     this.scheduleHeartbeatTimer();
   };
 
-  private readonly handleClose = (event: WebSocket.CloseEvent) => {
+  private readonly handleClose = (event: CloseEvent) => {
     this.logger.info("AccountStreamer closed", event);
     if (this.websocket === null) {
       return;
@@ -335,7 +332,7 @@ export class AccountStreamer {
     this.teardown();
   };
 
-  private readonly handleError = (event: WebSocket.ErrorEvent) => {
+  private readonly handleError = (event: Event) => {
     if (this.websocket === null) {
       return;
     }
@@ -353,7 +350,7 @@ export class AccountStreamer {
     this.teardown();
   };
 
-  private readonly handleMessage = (event: WebSocket.MessageEvent) => {
+  private readonly handleMessage = (event: import("undici").MessageEvent) => {
     const json = JSON.parse(event.data as string) as JsonMap;
 
     if (json.results !== undefined) {

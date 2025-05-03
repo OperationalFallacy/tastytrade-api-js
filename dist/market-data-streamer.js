@@ -1,6 +1,5 @@
-import WebSocket from "isomorphic-ws";
+import { WebSocket } from "undici";
 import { v4 as uuidv4 } from "uuid";
-import { MinTlsVersion } from "./utils/constants.js";
 const isNil = (value) => value == null;
 export var MarketDataSubscriptionType;
 (function (MarketDataSubscriptionType) {
@@ -72,9 +71,7 @@ export default class MarketDataStreamer {
             throw new Error("MarketDataStreamer is attempting to connect when an existing websocket is already connected");
         }
         this.token = token;
-        this.webSocket = new WebSocket(url, [], {
-            minVersion: MinTlsVersion, // TLS Config
-        });
+        this.webSocket = new WebSocket(url);
         this.webSocket.onopen = this.onOpen.bind(this);
         this.webSocket.onerror = this.onError.bind(this);
         this.webSocket.onmessage = this.handleMessageReceived.bind(this);

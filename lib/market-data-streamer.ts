@@ -1,6 +1,6 @@
-import WebSocket from "isomorphic-ws";
+import { WebSocket } from "undici";
+import type { MessageEvent as UndiciMessageEvent } from "undici";
 import { v4 as uuidv4 } from "uuid";
-import { MinTlsVersion } from "./utils/constants.js";
 
 const isNil = (value: unknown): boolean => value == null;
 
@@ -114,9 +114,7 @@ export default class MarketDataStreamer {
     }
 
     this.token = token;
-    this.webSocket = new WebSocket(url, [], {
-      minVersion: MinTlsVersion, // TLS Config
-    });
+    this.webSocket = new WebSocket(url);
     this.webSocket.onopen = this.onOpen.bind(this);
     this.webSocket.onerror = this.onError.bind(this);
     this.webSocket.onmessage = this.handleMessageReceived.bind(this);
@@ -446,7 +444,7 @@ export default class MarketDataStreamer {
     this.errorListeners.forEach((listener) => listener(error));
   }
 
-  private handleMessageReceived(data: WebSocket.MessageEvent) {
+  private handleMessageReceived(data: UndiciMessageEvent) {
     const messageData = "data" in data ? (data as any).data : "{}";
     const jsonData = JSON.parse(messageData as string);
     switch (jsonData.type) {
