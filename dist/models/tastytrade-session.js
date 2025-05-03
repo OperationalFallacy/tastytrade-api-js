@@ -1,10 +1,8 @@
-import _ from 'lodash';
+const isNil = (value) => value == null;
 export default class TastytradeSession {
-    constructor() {
-        this.authToken = null;
-    }
+    authToken = null;
     get isValid() {
-        return !_.isNil(this.authToken);
+        return !isNil(this.authToken);
     }
     clear() {
         this.authToken = null;

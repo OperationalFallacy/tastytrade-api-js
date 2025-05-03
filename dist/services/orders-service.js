@@ -1,5 +1,6 @@
 import extractResponseData from "../utils/response-util.js";
 export default class OrderService {
+    httpClient;
     constructor(httpClient) {
         this.httpClient = httpClient;
     }

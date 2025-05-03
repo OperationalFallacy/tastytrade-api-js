@@ -1,14 +1,9 @@
 import TastytradeSession from "../models/tastytrade-session.js";
-import axios from "axios";
-import qs from 'qs';
+import { URL } from "url";
 import { recursiveDasherizeKeys } from "../utils/json-util.js";
-import _ from 'lodash';
-const ParamsSerializer = {
-    serialize: function (queryParams) {
-        return qs.stringify(queryParams, { arrayFormat: 'brackets' });
-    }
-};
 export default class TastytradeHttpClient {
+    baseUrl;
+    session;
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
         this.session = new TastytradeSession();
@@ -16,12 +11,12 @@ export default class TastytradeHttpClient {
     getDefaultHeaders() {
         const headers = {
             "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": this.session.authToken
+            Accept: "application/json",
+            Authorization: this.session.authToken,
         };
         // Only set user agent if running in node
-        if (typeof window === 'undefined') {
-            headers["User-Agent"] = 'tastytrade-sdk-js';
+        if (typeof window === "undefined") {
+            headers["User-Agent"] = "tastytrade-sdk-js";
         }
         return headers;
     }
@@ -29,31 +24,49 @@ export default class TastytradeHttpClient {
         const dasherizedParams = recursiveDasherizeKeys(params);
         const dasherizedData = recursiveDasherizeKeys(data);
         const mergedHeaders = { ...headers, ...this.getDefaultHeaders() };
-        const config = _.omitBy({
-            method,
-            url,
-            baseURL: this.baseUrl,
-            data: dasherizedData,
+        const fullUrl = new URL(url, this.baseUrl);
+        for (const [key, value] of Object.entries(dasherizedParams)) {
+            if (Array.isArray(value)) {
+                value.forEach((v) => fullUrl.searchParams.append(`${key}[]`, String(v)));
+            }
+            else if (value !== undefined && value !== null) {
+                fullUrl.searchParams.append(key, String(value));
+            }
+        }
+        const response = await fetch(fullUrl.toString(), {
+            method: method.toUpperCase(),
             headers: mergedHeaders,
-            params: dasherizedParams,
-            paramsSerializer: ParamsSerializer
-        }, _.isEmpty);
-        return axios.request(config);
+            body: method.toLowerCase() !== "get" &&
+                method.toLowerCase() !== "delete" &&
+                Object.keys(dasherizedData).length > 0
+                ? JSON.stringify(dasherizedData)
+                : undefined,
+        });
+        const text = await response.text();
+        const dataParsed = text ? JSON.parse(text) : {};
+        if (!response.ok) {
+            throw {
+                status: response.status,
+                statusText: response.statusText,
+                data: dataParsed,
+            };
+        }
+        return dataParsed;
     }
     async getData(url, headers = {}, queryParams = {}) {
-        return this.executeRequest('get', url, {}, headers, queryParams);
+        return this.executeRequest("get", url, {}, headers, queryParams);
     }
     async postData(url, data, headers) {
-        return this.executeRequest('post', url, data, headers);
+        return this.executeRequest("post", url, data, headers);
     }
     async putData(url, data, headers) {
-        return this.executeRequest('put', url, data, headers);
+        return this.executeRequest("put", url, data, headers);
     }
     async patchData(url, data, headers) {
-        return this.executeRequest('patch', url, data, headers);
+        return this.executeRequest("patch", url, data, headers);
     }
     async deleteData(url, headers) {
-        return this.executeRequest('delete', url, headers);
+        return this.executeRequest("delete", url, headers);
     }
 }
 //# sourceMappingURL=tastytrade-http-client.js.map

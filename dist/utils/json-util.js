@@ -1,10 +1,11 @@
-import _ from 'lodash';
+const isNil = (val) => val == null;
 export class JsonBuilder {
+    json;
     constructor(json = {}) {
         this.json = json;
     }
     add(key, value, serializeEmpty = false) {
-        if ((_.isNil(value) || value === '') && !serializeEmpty) {
+        if ((isNil(value) || value === "") && !serializeEmpty) {
             return this;
         }
         this.json[key] = value;
@@ -13,14 +14,14 @@ export class JsonBuilder {
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function recursiveDasherizeKeys(body) {
-    let dasherized = _.mapKeys(body, (_value, key) => dasherize(key));
+    let dasherized = Object.fromEntries(Object.entries(body).map(([k, v]) => [dasherize(k), v]));
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    dasherized = _.mapValues(dasherized, (value) => {
-        if (_.isPlainObject(value)) {
-            return recursiveDasherizeKeys(value);
-        }
-        return value;
-    });
+    dasherized = Object.fromEntries(Object.entries(dasherized).map(([k, v]) => [
+        k,
+        v != null && typeof v === "object" && !Array.isArray(v)
+            ? recursiveDasherizeKeys(v)
+            : v,
+    ]));
     return dasherized;
 }
 export function dasherize(target) {

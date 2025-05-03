@@ -17,6 +17,24 @@ import TransactionsService from "./services/transactions-service.js";
 import WatchlistsService from "./services/watchlists-service.js";
 import PopService from "./services/pop-service.js";
 export default class TastytradeClient {
+    baseUrl;
+    accountStreamerUrl;
+    httpClient;
+    accountStreamer;
+    sessionService;
+    accountStatusService;
+    accountsAndCustomersService;
+    balancesAndPositionsService;
+    instrumentsService;
+    marginRequirementsService;
+    marketMetricsService;
+    netLiquidatingValueHistoryService;
+    orderService;
+    riskParametersService;
+    symbolSearchService;
+    transactionsService;
+    watchlistsService;
+    popService;
     constructor(baseUrl, accountStreamerUrl) {
         this.baseUrl = baseUrl;
         this.accountStreamerUrl = accountStreamerUrl;

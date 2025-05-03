@@ -1,6 +1,6 @@
-import type { JsonValue } from './utils/json-util.js';
-import { JsonBuilder } from './utils/json-util.js';
-import TastytradeSession from './models/tastytrade-session.js';
+import type { JsonValue } from "./utils/json-util.js";
+import { JsonBuilder } from "./utils/json-util.js";
+import TastytradeSession from "./models/tastytrade-session.js";
 export declare enum STREAMER_STATE {
     Open = 0,
     Closed = 1,

@@ -1,6 +1,7 @@
 import extractResponseData from "../utils/response-util.js";
 // create the central class that aggregates all services
 export default class AccountStatusService {
+    httpClient;
     constructor(httpClient) {
         this.httpClient = httpClient;
     }

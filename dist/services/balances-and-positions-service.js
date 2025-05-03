@@ -1,5 +1,6 @@
 import extractResponseData from "../utils/response-util.js";
 export default class BalancesAndPositionsService {
+    httpClient;
     constructor(httpClient) {
         this.httpClient = httpClient;
     }
