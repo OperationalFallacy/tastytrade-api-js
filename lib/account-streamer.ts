@@ -1,8 +1,7 @@
-import type { MessageEvent } from "undici";
+import WebSocket, { Event, MessageEvent, CloseEvent } from "ws";
 import type { JsonMap, JsonValue } from "./utils/json-util.js";
 import { JsonBuilder } from "./utils/json-util.js";
 import TastytradeSession from "./models/tastytrade-session.js";
-import { WebSocket } from "undici";
 
 const isNil = (value: unknown): boolean => value == null;
 

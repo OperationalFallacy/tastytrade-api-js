@@ -1,4 +1,4 @@
-import { WebSocket } from "undici";
+import WebSocket from "ws";
 import { v4 as uuidv4 } from "uuid";
 const isNil = (value) => value == null;
 export var MarketDataSubscriptionType;

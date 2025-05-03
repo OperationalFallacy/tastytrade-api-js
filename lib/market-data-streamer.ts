@@ -1,5 +1,4 @@
-import { WebSocket } from "undici";
-import type { MessageEvent as UndiciMessageEvent } from "undici";
+import WebSocket, { MessageEvent } from "ws";
 import { v4 as uuidv4 } from "uuid";
 
 const isNil = (value: unknown): boolean => value == null;
@@ -444,7 +443,7 @@ export default class MarketDataStreamer {
     this.errorListeners.forEach((listener) => listener(error));
   }
 
-  private handleMessageReceived(data: UndiciMessageEvent) {
+  private handleMessageReceived(data: MessageEvent) {
     const messageData = "data" in data ? (data as any).data : "{}";
     const jsonData = JSON.parse(messageData as string);
     switch (jsonData.type) {

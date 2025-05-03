@@ -1,5 +1,5 @@
+import WebSocket from "ws";
 import { JsonBuilder } from "./utils/json-util.js";
-import { WebSocket } from "undici";
 const isNil = (value) => value == null;
 export var STREAMER_STATE;
 (function (STREAMER_STATE) {
