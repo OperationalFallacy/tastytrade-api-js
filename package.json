@@ -24,8 +24,7 @@
     "unit-test": "node --experimental-vm-modules ./node_modules/.bin/jest tests/unit",
     "integration-test": "node --experimental-vm-modules ./node_modules/.bin/jest tests/integration",
     "lint": "eslint lib/** tests/**",
-    "prepublishOnly": "npm run unit-test && npm run build",
-    "postpack": "git tag -a $npm_package_version -m $npm_package_version && git push origin $npm_package_version"
+    "prepublishOnly": "npm run unit-test && npm run build"
   },
   "dependencies": {
     "@types/lodash": "^4.14.182",
