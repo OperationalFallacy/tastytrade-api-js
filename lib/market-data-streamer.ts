@@ -1,4 +1,4 @@
-import WebSocket, { MessageEvent } from "ws";
+const WebSocket = globalThis.WebSocket;
 import { v4 as uuidv4 } from "uuid";
 
 const isNil = (value: unknown): boolean => value == null;
@@ -443,7 +443,7 @@ export default class MarketDataStreamer {
     this.errorListeners.forEach((listener) => listener(error));
   }
 
-  private handleMessageReceived(data: MessageEvent) {
+  private handleMessageReceived(data: any) {
     const messageData = "data" in data ? (data as any).data : "{}";
     const jsonData = JSON.parse(messageData as string);
     switch (jsonData.type) {
