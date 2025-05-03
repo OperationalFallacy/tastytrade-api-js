@@ -1,7 +1,8 @@
-import { WebSocket } from "undici";
+import type { MessageEvent } from "undici";
 import type { JsonMap, JsonValue } from "./utils/json-util.js";
 import { JsonBuilder } from "./utils/json-util.js";
 import TastytradeSession from "./models/tastytrade-session.js";
+import { WebSocket } from "undici";
 
 const isNil = (value: unknown): boolean => value == null;
 
@@ -350,7 +351,7 @@ export class AccountStreamer {
     this.teardown();
   };
 
-  private readonly handleMessage = (event: import("undici").MessageEvent) => {
+  private readonly handleMessage = (event: MessageEvent) => {
     const json = JSON.parse(event.data as string) as JsonMap;
 
     if (json.results !== undefined) {
