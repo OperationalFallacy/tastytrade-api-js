@@ -1,6 +1,7 @@
 import TastytradeSession from "../models/tastytrade-session.js";
 import { URL } from "url";
 import { recursiveDasherizeKeys } from "../utils/json-util.js";
+import { fetch } from "undici";
 export default class TastytradeHttpClient {
     baseUrl;
     session;
@@ -12,7 +13,9 @@ export default class TastytradeHttpClient {
         const headers = {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: this.session.authToken,
+            ...(this.session.authToken
+                ? { Authorization: this.session.authToken }
+                : {}),
         };
         // Only set user agent if running in node
         if (typeof window === "undefined") {
@@ -23,7 +26,7 @@ export default class TastytradeHttpClient {
     async executeRequest(method, url, data = {}, headers = {}, params = {}) {
         const dasherizedParams = recursiveDasherizeKeys(params);
         const dasherizedData = recursiveDasherizeKeys(data);
-        const mergedHeaders = { ...headers, ...this.getDefaultHeaders() };
+        const mergedHeaders = Object.fromEntries(Object.entries({ ...headers, ...this.getDefaultHeaders() }).filter(([_, v]) => v !== undefined));
         const fullUrl = new URL(url, this.baseUrl);
         for (const [key, value] of Object.entries(dasherizedParams)) {
             if (Array.isArray(value)) {
