@@ -10,6 +10,4 @@ export default function extractResponseData(httpResponse) {
         return httpResponse;
     }
 }
-// add login parser here
-// create unit tests for login parser, extractreponsedata
 //# sourceMappingURL=response-util.js.map

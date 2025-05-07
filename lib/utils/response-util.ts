@@ -8,6 +8,3 @@ export default function extractResponseData(httpResponse: any) {
     return httpResponse;
   }
 }
-
-// add login parser here
-// create unit tests for login parser, extractreponsedata
