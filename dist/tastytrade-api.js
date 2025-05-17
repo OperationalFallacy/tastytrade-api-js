@@ -1,6 +1,6 @@
 import TastytradeHttpClient from "./services/tastytrade-http-client.js";
-import { AccountStreamer, STREAMER_STATE } from './account-streamer.js';
-import MarketDataStreamer, { CandleType, MarketDataSubscriptionType } from "./market-data-streamer.js";
+import { AccountStreamer, STREAMER_STATE, } from "./account-streamer.js";
+import MarketDataStreamer, { CandleType, MarketDataSubscriptionType, } from "./market-data-streamer.js";
 //Services:
 import SessionService from "./services/session-service.js";
 import AccountStatusService from "./services/account-status-service.js";
@@ -47,7 +47,8 @@ export default class TastytradeClient {
         this.instrumentsService = new InstrumentsService(this.httpClient);
         this.marginRequirementsService = new MarginRequirementsService(this.httpClient);
         this.marketMetricsService = new MarketMetricsService(this.httpClient);
-        this.netLiquidatingValueHistoryService = new NetLiquidatingValueHistoryService(this.httpClient);
+        this.netLiquidatingValueHistoryService =
+            new NetLiquidatingValueHistoryService(this.httpClient);
         this.orderService = new OrderService(this.httpClient);
         this.riskParametersService = new RiskParametersService(this.httpClient);
         this.symbolSearchService = new SymbolSearchService(this.httpClient);
@@ -59,6 +60,6 @@ export default class TastytradeClient {
         return this.httpClient.session;
     }
 }
-export { MarketDataStreamer, MarketDataSubscriptionType, CandleType };
-export { AccountStreamer, STREAMER_STATE };
+export { MarketDataStreamer, MarketDataSubscriptionType, CandleType, };
+export { AccountStreamer, STREAMER_STATE, };
 //# sourceMappingURL=tastytrade-api.js.map
