@@ -1,8 +1,8 @@
 export interface quoteStreamerTokenResponse {
     token: string;
-    'streamer-url'?: string;
-    'websocket-url'?: string;
-    'dxlink-url': string;
+    "streamer-url"?: string;
+    "websocket-url"?: string;
+    "dxlink-url": string;
     level: string;
 }
 //# sourceMappingURL=QuoteStreamer.d.ts.map

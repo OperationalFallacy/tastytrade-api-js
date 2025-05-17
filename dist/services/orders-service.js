@@ -61,8 +61,8 @@ export default class OrderService {
         return extractResponseData(orderResponse);
     }
     async postOrderDryRun(accountNumber, order) {
-        //Accepts a json document containing parameters to create an order and then runs the prefights without placing the order.
         const orderDryRun = await this.httpClient.postData(`/accounts/${accountNumber}/orders/dry-run`, order, {});
+        console.debug("orderDryRun: full, extracted", JSON.stringify(orderDryRun, null, 2), extractResponseData(orderDryRun));
         return extractResponseData(orderDryRun);
     }
     async getLiveOrdersForCustomer(customerId) {

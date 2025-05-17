@@ -10,6 +10,11 @@ export default class SessionService {
         const params = { login: usernameOrEmail, password, rememberMe };
         const sessionResponse = await this.httpClient.postData("/sessions", params, {});
         const sessionData = extractResponseData(sessionResponse);
+        // console.debug(
+        //   `sessionData extracted:${JSON.stringify(sessionData, null, 2)}, ${
+        //     sessionData.data["session-token"]
+        //   }`
+        // );
         this.httpClient.session.authToken = sessionData["session-token"];
         return sessionData;
     }

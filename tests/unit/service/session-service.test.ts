@@ -34,16 +34,19 @@ const expectedToken =
 
 describe("login", () => {
   const responseData = {
-    "session-token": expectedToken,
-    user: {
-      email: "fake-user@tastytrade.com",
-      "external-id": "U8aacecd2-545f-4077-9d55-7ccd04cbbfea",
+    data: {
+      "session-token": expectedToken,
+      user: {
+        email: "fake-user@tastytrade.com",
+        "external-id": "U8aacecd2-545f-4077-9d55-7ccd04cbbfea",
+      },
     },
   };
   it("sets the correct auth token", async function () {
     mockPool
       .intercept({ path: "/sessions", method: "POST" })
       .reply(200, responseData);
+
     const client = new TastytradeHttpClient(BaseUrl);
     const sessionService = new SessionService(client);
     await sessionService.login("fakeusername", "fakepassword");
@@ -54,12 +57,15 @@ describe("login", () => {
 
 describe("loginWithRememberToken", () => {
   const responseData = {
-    "session-token": expectedToken,
-    user: {
-      email: "fake-user@tastytrade.com",
-      "external-id": "U8aacecd2-545f-4077-9d55-7ccd04cbbfea",
+    data: {
+      "session-token": expectedToken,
+      user: {
+        email: "fake-user@tastytrade.com",
+        "external-id": "U8aacecd2-545f-4077-9d55-7ccd04cbbfea",
+      },
+      "remember-token":
+        "AK-rKgllt-H-IBQ-kUa2cA8rt1j4a-nmc46AyVa6HrjPyF4oARrHPA",
     },
-    "remember-token": "AK-rKgllt-H-IBQ-kUa2cA8rt1j4a-nmc46AyVa6HrjPyF4oARrHPA",
   };
   it("sets the correct auth token", async function () {
     mockPool
@@ -95,7 +101,7 @@ describe("validate", () => {
     const result = await sessionService.validate();
     expect(client.session.authToken).toBe(expectedToken);
     expect(client.session.isValid).toBeTruthy();
-    expect(result.data.username).toBe("fakeuser");
+    expect(result.username).toBe("fakeuser");
   });
 });
 

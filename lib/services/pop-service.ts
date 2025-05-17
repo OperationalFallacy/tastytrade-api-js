@@ -52,7 +52,7 @@ export interface Pop50ResponseError {
   message: string;
   errors: any[]; // You may want to define a more specific interface for these errors
 }
- 
+
 export interface PathResult {
   cost: string;
   "cost-effect": "Debit" | "Credit";
@@ -89,14 +89,14 @@ export default class PopService {
         requestData,
         {}
       );
-      if(popResponse.data.error) {
+      if (popResponse.data.error) {
         console.error("Error occurred during get50Pop");
         throw popResponse.data.error;
       }
-      const s: Pop50ResponseData = extractResponseData(popResponse)
+      const s: Pop50ResponseData = extractResponseData(popResponse);
 
       return { data: s, error: popResponse.error } as Pop50Response;
-    } catch (error:any) {
+    } catch (error: any) {
       console.error("Error occurred during get50Pop:", error.message);
       throw error;
     }

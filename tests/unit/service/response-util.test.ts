@@ -1,52 +1,89 @@
 import extractResponseData from "../../../lib/utils/response-util";
 
-describe("extractResponseData", () => {
-  it("returns data.data.items when present", () => {
-    const response = {
-      data: {
-        data: {
-          items: [{ id: 1 }, { id: 2 }],
-        },
+const responseWithFlatItems = {
+  data: {
+    items: [
+      {
+        symbol: "TSLA",
+        price: 700,
       },
-    };
-    const result = extractResponseData(response);
-    expect(result).toEqual([{ id: 1 }, { id: 2 }]);
+    ],
+  },
+};
+
+const responseWithItems = {
+  data: {
+    data: {
+      items: [
+        {
+          symbol: "AAPL",
+          price: 150,
+        },
+      ],
+    },
+  },
+};
+
+const responseWithData = {
+  data: {
+    data: {
+      username: "masked_user",
+      email: "user@example.com",
+    },
+  },
+};
+
+const responseWithOnlyData = {
+  data: {
+    items: {
+      irrelevant: true,
+    },
+  },
+};
+
+const responseWithNoData = {
+  status: 500,
+  message: "Internal server error",
+};
+
+const responseWithErrorStructure = {
+  data: {
+    error: {
+      code: "token_invalid",
+      message: "Token is expired",
+    },
+    status: 401,
+  },
+};
+
+describe("extractResponseData", () => {
+  it("returns data.items when data.items is an array", () => {
+    const result = extractResponseData(responseWithFlatItems);
+    expect(result).toEqual(responseWithFlatItems.data.items);
+  });
+
+  it("returns data.data.items when available", () => {
+    const result = extractResponseData(responseWithItems);
+    expect(result).toEqual(responseWithItems.data.data.items);
   });
 
   it("returns data.data when items not present", () => {
-    const response = {
-      data: {
-        data: {
-          foo: "bar",
-        },
-      },
-    };
-    const result = extractResponseData(response);
-    expect(result).toEqual({ foo: "bar" });
+    const result = extractResponseData(responseWithData);
+    expect(result).toEqual(responseWithData.data.data);
   });
 
-  it("returns raw response if no nested data", () => {
-    const response = {
-      context: "/some-context",
-      "session-token": "ABC123",
-    };
-    const result = extractResponseData(response);
-    expect(result).toEqual(response);
+  it("returns full response when no data.data or items present", () => {
+    const result = extractResponseData(responseWithOnlyData);
+    expect(result).toEqual(responseWithOnlyData.data);
   });
 
-  it("does not preserve top-level session-token field", () => {
-    const response = {
-      "session-token": "TOKEN123",
-      data: {
-        data: {
-          user: {
-            email: "user@example.com",
-            username: "testuser",
-          },
-        },
-      },
-    };
-    const result = extractResponseData(response);
-    expect(result).not.toHaveProperty("session-token");
+  it("returns full response when top-level structure is not nested", () => {
+    const result = extractResponseData(responseWithNoData);
+    expect(result).toEqual(responseWithNoData);
+  });
+
+  it("returns full response when nested structure is not recognized", () => {
+    const result = extractResponseData(responseWithErrorStructure);
+    expect(result).toEqual(responseWithErrorStructure.data);
   });
 });
