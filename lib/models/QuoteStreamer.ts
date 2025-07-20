@@ -4,4 +4,6 @@ export interface quoteStreamerTokenResponse {
   "websocket-url"?: string; // deprecated
   "dxlink-url": string; // "wss://tasty-openapi-ws.dxfeed.com/realtime",
   level: string; //'demo'
+  "expires-at": string;
+  "issued-at": string;
 }
