@@ -143,11 +143,6 @@ export default class OrderService {
       order,
       {}
     );
-    console.debug(
-      "orderDryRun: full, extracted",
-      JSON.stringify(orderDryRun, null, 2),
-      extractResponseData(orderDryRun)
-    );
     return extractResponseData(orderDryRun) as any;
   }
 

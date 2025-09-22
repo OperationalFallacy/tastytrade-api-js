@@ -62,7 +62,6 @@ export default class OrderService {
     }
     async postOrderDryRun(accountNumber, order) {
         const orderDryRun = await this.httpClient.postData(`/accounts/${accountNumber}/orders/dry-run`, order, {});
-        console.debug("orderDryRun: full, extracted", JSON.stringify(orderDryRun, null, 2), extractResponseData(orderDryRun));
         return extractResponseData(orderDryRun);
     }
     async getLiveOrdersForCustomer(customerId) {
