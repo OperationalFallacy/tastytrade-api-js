@@ -1,4 +1,3 @@
-import extractResponseData from "../utils/response-util.js";
 export default class SessionService {
     httpClient;
     constructor(httpClient) {
@@ -9,7 +8,7 @@ export default class SessionService {
         // Create a new user session.
         const params = { login: usernameOrEmail, password, rememberMe };
         const sessionResponse = await this.httpClient.postData("/sessions", params, {});
-        const sessionData = extractResponseData(sessionResponse);
+        const sessionData = sessionResponse;
         // console.debug(
         //   `sessionData extracted:${JSON.stringify(sessionData, null, 2)}, ${
         //     sessionData.data["session-token"]
@@ -21,18 +20,18 @@ export default class SessionService {
     async loginWithRememberToken(usernameOrEmail, rememberToken, rememberMe = false) {
         // Creates a session using the remember token.
         const params = { login: usernameOrEmail, rememberToken, rememberMe };
-        const sessionData = extractResponseData(await this.httpClient.postData("/sessions", params, {}));
+        const sessionData = await this.httpClient.postData("/sessions", params, {});
         this.httpClient.session.authToken = sessionData["session-token"];
         return sessionData;
     }
     async validate() {
         const response = await this.httpClient.postData("/sessions/validate", {}, {});
-        return extractResponseData(response);
+        return response;
     }
     async logout() {
         const response = await this.httpClient.deleteData("/sessions", {}); // added this for the integration tests?
         this.httpClient.session.clear();
-        return extractResponseData(response);
+        return response;
     }
 }
 //# sourceMappingURL=session-service.js.map

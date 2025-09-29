@@ -1,4 +1,3 @@
-import extractResponseData from "../utils/response-util.js";
 import TastytradeHttpClient from "./tastytrade-http-client.js";
 
 export default class InstrumentsService {
@@ -13,7 +12,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(cryptocurrencies);
+    return cryptocurrencies;
   }
   async getSingleCryptocurrency(symbol: string) {
     //Retrieve a cryptocurrency given a symbol.
@@ -23,7 +22,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleCryptocurrency);
+    return singleCryptocurrency;
   }
   async getActiveEquities(queryParams = {}) {
     //Returns all active equities in a paginated fashion
@@ -32,7 +31,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(activeEquities);
+    return activeEquities;
   }
   async getEquityDefinitions(queryParams = {}) {
     //Returns a set of equity definitions given an array of one or more symbols
@@ -41,7 +40,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(equityDefinitions);
+    return equityDefinitions;
   }
   async getSingleEquity(symbol: string) {
     //Returns a single equity definition for the provided symbol
@@ -50,7 +49,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleEquity);
+    return singleEquity;
   }
   async getEquityOptions(
     symbols: string[],
@@ -70,7 +69,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(equityOptions);
+    return equityOptions;
   }
   async getSingleEquityOption(symbol: string, queryParams = {}) {
     //Get equity option by symbol
@@ -79,7 +78,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(singleOption);
+    return singleOption;
   }
   async getFutures(queryParams = {}) {
     //Returns a set of outright futures given an array of one or more symbols.
@@ -88,7 +87,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(futures);
+    return futures;
   }
   async getSingleFuture(symbol: string) {
     //Returns an outright future given a symbol.
@@ -97,7 +96,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleFuture);
+    return singleFuture;
   }
   async getFutureOptionsProducts() {
     //Returns metadata for all supported future option products
@@ -106,7 +105,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(futureOptionsProducts);
+    return futureOptionsProducts;
   }
   async getSingleFutureOptionProduct(exchange: string, rootSymbol: string) {
     //Get a future option product by exchange and root symbol
@@ -115,7 +114,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleFutureOptionProduct);
+    return singleFutureOptionProduct;
   }
   async getFutureOptions(queryParams = {}) {
     //Returns a set of future option(s) given an array of one or more symbols.
@@ -125,7 +124,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(futureOptions);
+    return futureOptions;
   }
   async getSingleFutureOption(symbol: string) {
     //Returns a future option given a symbol. Uses TW symbology: ./ESZ9 EW4U9 190927P2975
@@ -134,7 +133,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleFutureOption);
+    return singleFutureOption;
   }
   async getFuturesProducts() {
     //Returns metadata for all supported futures products
@@ -143,7 +142,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(futuresProducts);
+    return futuresProducts;
   }
   async getSingleFutureProduct(exchange: string, code: string) {
     //Get future product from exchange and product code
@@ -152,7 +151,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleFutureProduct);
+    return singleFutureProduct;
   }
   async getQuantityDecimalPrecisions() {
     //Retrieve all quantity decimal precisions.
@@ -161,7 +160,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(quantityDecimalPrecisions);
+    return quantityDecimalPrecisions;
   }
   async getWarrants(queryParams = {}) {
     //Returns a set of warrant definitions that can be filtered by parameters
@@ -170,7 +169,7 @@ export default class InstrumentsService {
       {},
       queryParams
     );
-    return extractResponseData(warrants);
+    return warrants;
   }
   async getSingleWarrant(symbol: string) {
     //Returns a single warrant definition for the provided symbol
@@ -179,7 +178,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(singleWarrant);
+    return singleWarrant;
   }
 
   //Futures-option-chains: Allows an API client to fetch futures option chains.
@@ -190,7 +189,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(nestedFutureOptionChains);
+    return nestedFutureOptionChains;
   }
   async getFutureOptionChain(symbol: string) {
     //Returns a futures option chain given a futures product code, i.e. ES
@@ -199,7 +198,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(futureOptionChain);
+    return futureOptionChain;
   }
 
   //Option-chains: Allows an API client to fetch futures option chains.
@@ -211,7 +210,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(nestedOptionChain);
+    return nestedOptionChain;
   }
   async getCompactOptionChain(symbol: string) {
     //Returns an option chain given an underlying symbol, i.e. AAPL in a compact form to minimize content size
@@ -220,7 +219,7 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(compactOptionChain);
+    return compactOptionChain;
   }
   async getOptionChain(symbol: string) {
     //Returns an option chain given an underlying symbol, i.e. AAPL
@@ -229,6 +228,6 @@ export default class InstrumentsService {
       {},
       {}
     );
-    return extractResponseData(optionChain);
+    return optionChain;
   }
 }

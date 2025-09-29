@@ -2,7 +2,6 @@ import type {
   OrderResponse,
   submitOrderResponse,
 } from "../models/OrderInterfaces.js";
-import extractResponseData from "../utils/response-util.js";
 import TastytradeHttpClient from "./tastytrade-http-client.js";
 
 export default class OrderService {
@@ -16,7 +15,7 @@ export default class OrderService {
       {},
       {}
     );
-    return extractResponseData(reconfirmOrder);
+    return reconfirmOrder;
   }
 
   async replacementOrderDryRun(
@@ -30,7 +29,7 @@ export default class OrderService {
       replacementOrder,
       {}
     );
-    return extractResponseData(replacementOrderDryRun);
+    return replacementOrderDryRun;
   }
 
   async getOrder(accountNumber: string, orderId: number) {
@@ -40,7 +39,7 @@ export default class OrderService {
       {},
       {}
     );
-    return extractResponseData(order);
+    return order;
   }
 
   async cancelOrder(
@@ -52,7 +51,7 @@ export default class OrderService {
       `/accounts/${accountNumber}/orders/${orderId}`,
       {}
     );
-    return extractResponseData(order);
+    return order;
   }
 
   async cancelComplexOrder(accountNumber: string, orderId: number) {
@@ -61,7 +60,7 @@ export default class OrderService {
       `/accounts/${accountNumber}/complex-orders/${orderId}`,
       {}
     );
-    return extractResponseData(order);
+    return order;
   }
 
   async replaceOrder(
@@ -75,7 +74,7 @@ export default class OrderService {
       replacementOrder,
       {}
     );
-    return extractResponseData(order);
+    return order;
   }
 
   async editOrder(accountNumber: string, orderId: number, order: object) {
@@ -85,7 +84,7 @@ export default class OrderService {
       order,
       {}
     );
-    return extractResponseData(orderResponse);
+    return orderResponse;
   }
 
   async getLiveOrders(accountNumber: string) {
@@ -95,7 +94,7 @@ export default class OrderService {
       {},
       {}
     );
-    return extractResponseData(liveOrders);
+    return liveOrders;
   }
 
   async getOrders(
@@ -108,7 +107,7 @@ export default class OrderService {
       {},
       queryParams
     );
-    return extractResponseData(orders);
+    return orders;
   }
 
   async createOrder(
@@ -121,7 +120,7 @@ export default class OrderService {
       order,
       {}
     );
-    return extractResponseData(orderResponse);
+    return orderResponse;
   }
 
   async createComplexOrder(accountNumber: string, order: object) {
@@ -131,7 +130,7 @@ export default class OrderService {
       order,
       {}
     );
-    return extractResponseData(orderResponse);
+    return orderResponse;
   }
 
   async postOrderDryRun(
@@ -143,7 +142,7 @@ export default class OrderService {
       order,
       {}
     );
-    return extractResponseData(orderDryRun) as any;
+    return orderDryRun as any;
   }
 
   async getLiveOrdersForCustomer(customerId: string) {
@@ -153,7 +152,7 @@ export default class OrderService {
       {},
       {}
     );
-    return extractResponseData(liveOrders);
+    return liveOrders;
   }
 
   async getCustomerOrders(customerId: string, queryParams = {}) {
@@ -163,6 +162,6 @@ export default class OrderService {
       {},
       queryParams
     );
-    return extractResponseData(customerOrders);
+    return customerOrders;
   }
 }

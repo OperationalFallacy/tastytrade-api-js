@@ -1,4 +1,3 @@
-import extractResponseData from "../utils/response-util.js";
 export default class PopService {
     httpClient;
     constructor(httpClient) {
@@ -16,7 +15,7 @@ export default class PopService {
                 console.error("Error occurred during get50Pop");
                 throw popResponse.data.error;
             }
-            const s = extractResponseData(popResponse);
+            const s = popResponse;
             return { data: s, error: popResponse.error };
         }
         catch (error) {

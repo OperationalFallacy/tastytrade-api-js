@@ -1,4 +1,3 @@
-import extractResponseData from "../utils/response-util.js";
 import TastytradeHttpClient from "./tastytrade-http-client.js";
 
 export interface Pop50Request {
@@ -93,7 +92,7 @@ export default class PopService {
         console.error("Error occurred during get50Pop");
         throw popResponse.data.error;
       }
-      const s: Pop50ResponseData = extractResponseData(popResponse);
+      const s: Pop50ResponseData = popResponse;
 
       return { data: s, error: popResponse.error } as Pop50Response;
     } catch (error: any) {

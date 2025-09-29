@@ -1,4 +1,3 @@
-import extractResponseData from "../utils/response-util.js";
 export default class SymbolSearchService {
     httpClient;
     constructor(httpClient) {
@@ -7,8 +6,8 @@ export default class SymbolSearchService {
     //Default
     async getSymbolData(symbol) {
         //Returns an array of symbol data.
-        const symbolData = (await this.httpClient.getData(`/symbols/search/${symbol}`, {}, {}));
-        return extractResponseData(symbolData);
+        const symbolData = await this.httpClient.getData(`/symbols/search/${symbol}`, {}, {});
+        return symbolData;
     }
 }
 //# sourceMappingURL=symbol-search-service.js.map

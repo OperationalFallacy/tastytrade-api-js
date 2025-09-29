@@ -1,5 +1,4 @@
 import type { quoteStreamerTokenResponse } from "../models/QuoteStreamer.js";
-import extractResponseData from "../utils/response-util.js";
 import TastytradeHttpClient from "./tastytrade-http-client.js";
 
 export default class AccountsAndCustomersService {
@@ -10,7 +9,7 @@ export default class AccountsAndCustomersService {
       {},
       {}
     );
-    return extractResponseData(accountNumber);
+    return accountNumber;
   }
 
   //Customers: Operations about customers
@@ -21,7 +20,7 @@ export default class AccountsAndCustomersService {
       {},
       {}
     );
-    return extractResponseData(customerResource);
+    return customerResource;
   }
   async getCustomerAccountResources() {
     //Get a list of all the customer account resources attached to the current customer.
@@ -30,7 +29,7 @@ export default class AccountsAndCustomersService {
       {},
       {}
     );
-    return extractResponseData(customerAccountResources);
+    return customerAccountResources;
   }
   async getFullCustomerAccountResource(accountNumber: string) {
     //Get a full customer account resource.
@@ -39,7 +38,7 @@ export default class AccountsAndCustomersService {
       {},
       {}
     );
-    return extractResponseData(fullCustomerAccountResource);
+    return fullCustomerAccountResource;
   }
 
   //Quote-streamer-tokens: Operations about quote-streamer-tokens
@@ -50,9 +49,7 @@ export default class AccountsAndCustomersService {
       {},
       {}
     );
-    const e = extractResponseData(
-      quoteStreamerTokens
-    ) as quoteStreamerTokenResponse;
+    const e = quoteStreamerTokens as quoteStreamerTokenResponse;
     return e;
   }
 
@@ -63,6 +60,6 @@ export default class AccountsAndCustomersService {
       {},
       {}
     );
-    return extractResponseData(apiQuoteToken);
+    return apiQuoteToken;
   }
 }
