@@ -12,14 +12,14 @@ export default class SessionService {
       params,
       {}
     );
-    const sessionData = sessionResponse;
     // console.debug(
     //   `sessionData extracted:${JSON.stringify(sessionData, null, 2)}, ${
     //     sessionData.data["session-token"]
     //   }`
     // );
-    this.httpClient.session.authToken = sessionData["session-token"];
-    return sessionData;
+    this.httpClient.session.authToken =
+      sessionResponse["data"]["session-token"];
+    return sessionResponse["data"];
   }
 
   async loginWithRememberToken(
@@ -30,7 +30,7 @@ export default class SessionService {
     // Creates a session using the remember token.
     const params = { login: usernameOrEmail, rememberToken, rememberMe };
     const sessionData = await this.httpClient.postData("/sessions", params, {});
-    this.httpClient.session.authToken = sessionData["session-token"];
+    this.httpClient.session.authToken = sessionData["data"]["session-token"];
     return sessionData;
   }
 

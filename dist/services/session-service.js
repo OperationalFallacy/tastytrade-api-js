@@ -8,20 +8,20 @@ export default class SessionService {
         // Create a new user session.
         const params = { login: usernameOrEmail, password, rememberMe };
         const sessionResponse = await this.httpClient.postData("/sessions", params, {});
-        const sessionData = sessionResponse;
         // console.debug(
         //   `sessionData extracted:${JSON.stringify(sessionData, null, 2)}, ${
         //     sessionData.data["session-token"]
         //   }`
         // );
-        this.httpClient.session.authToken = sessionData["session-token"];
-        return sessionData;
+        this.httpClient.session.authToken =
+            sessionResponse["data"]["session-token"];
+        return sessionResponse["data"];
     }
     async loginWithRememberToken(usernameOrEmail, rememberToken, rememberMe = false) {
         // Creates a session using the remember token.
         const params = { login: usernameOrEmail, rememberToken, rememberMe };
         const sessionData = await this.httpClient.postData("/sessions", params, {});
-        this.httpClient.session.authToken = sessionData["session-token"];
+        this.httpClient.session.authToken = sessionData["data"]["session-token"];
         return sessionData;
     }
     async validate() {
